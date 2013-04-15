@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+    <head>
+
+    @Scripts.Render("~/Scripts/widgets/scripts/jquery-1.8.3.min.js")
+    @Scripts.Render("~/Scripts/widgets/jqwidgets/jqxcore.js")
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <meta charset="utf-8" />
+        <title>@ViewBag.Title - Mi aplicación ASP.NET MVC</title>
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width" />
+        @Styles.Render("~/Content/css")
+        @Styles.Render("~/Scripts/widgets/jqwidgets/styles/jqx.base.css")
+        @Styles.Render("~/Scripts/widgets/jqwidgets/styles/custom.css")
+        
+        @Scripts.Render("~/Scripts/widgets/jqwidgets/jqxmenu.js")
+        @Scripts.Render("~/Scripts/widgets/jqwidgets/jqxscrollview.js")
+        @Scripts.Render("~/Scripts/widgets/jqwidgets/jqxnavigationbar.js")
+        @Scripts.Render("~/Scripts/widgets/jqwidgets/jqxdatetimeinput.js")
+        @Scripts.Render("~/Scripts/widgets/jqwidgets/jqxcalendar.js")
+        @Scripts.Render("~/Scripts/widgets/jqwidgets/globalization/globalize.js")
+
+    </head>
+    <body>
+        <header>
+            <div class ="margen">
+            <div class="imagen-cabezera" style="text-align:center" >
+                <img src="~/Images/banner.jpg" style="width:62%"/>
+            </div>
+
+            <div class="float-right">
+                <section id="login">
+                    @Html.Partial("_LoginPartial")
+                </section>
+            </div>
+
+            <div id='content'>
+               
+                @Scripts.Render("~/Scripts/LoadMenu2.js")
+                <div id='jqxWidget'>
+                    <div id='jqxMenu', style="margin-left:315px">
+                        <ul>
+                            <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
+                            <li><a href="#">Comprar</a>
+                                <ul>
+                                    <li>@Html.ActionLink("Libros","ViewCart","Shoping")</li>
+                                </ul>
+                            </li>
+                            <li>@Html.ActionLink("Acerca de", "About", "Home")</li>
+                            <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
+                            <li>@Html.ActionLink("ShoppingCart","ShoppingCartExample","Shopping")</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+                </div>
+        </header>
+        
+        @*@RenderSection("scripts", required: false)*@
+        <div id="body">
+            @RenderSection("featured", required: false)
+            @*<section class="content-wrapper main-content clear-fix">*@
+                @RenderBody()
+            @*</section>*@
+        </div>
+        
+        
+        <footer>
+            <div class="content-wrapper">
+                <div class="float-left">
+                    <p>&copy; @DateTime.Now.Year  Powered by AlicanTeam</p>
+                </div>
+            </div>
+        </footer>
+
+        
+    </body>
+</html>

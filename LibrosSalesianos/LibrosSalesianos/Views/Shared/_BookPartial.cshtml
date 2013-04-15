@@ -1,0 +1,12 @@
+﻿@model LibrosSalesianos.Models.Book
+@{
+    ViewBag.Title = "_BookPartial";
+    var book = Model;
+}
+
+<h2>_BookPartial</h2>
+
+<img src ="@book.Image" />
+@Html.Label(@book.Description)
+@Html.Label(@book.ISBN)
+@Html.Label(@book.Price.ToString())

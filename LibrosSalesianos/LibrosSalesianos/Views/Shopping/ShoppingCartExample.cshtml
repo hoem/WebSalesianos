@@ -1,0 +1,20 @@
+﻿@{
+    ViewBag.Title = "ShoppingCartExample";
+}
+
+<h2>ShoppingCartExample</h2>
+
+<form id="form1" runat="server">  
+          
+    <div class="container">  
+        <h1>My Store</h1>    
+        <div class="products">
+            <ul>
+                Shoes - <li>@Html.ActionLink("Add to cart", "AddShoesToCart", "Shopping")</li>
+                Shirt - <li>@Html.ActionLink("Add to cart", "AddShirtToCart", "Shopping")</li>
+                Pants - <li>@Html.ActionLink("Add to cart", "AddPantsToCart", "Shopping")</li>
+            </ul>
+        </div>
+        <ul><li>@Html.ActionLink("Ver Carrito", "Cart", "Shopping")</li></ul>
+    </div>
+</form>

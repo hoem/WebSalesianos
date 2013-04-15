@@ -1,0 +1,51 @@
+﻿@{
+    ViewBag.Title = "Página principal";
+}
+@section featured {
+
+    @*@Scripts.Render("~/Scripts/LoadGarrely.js")*@
+
+  @Scripts.Render("~/Scripts/LoadGarrely2.js")
+    <div class="cuerpo">
+        <h3>@Html.Label("Noticias")</h3>
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                // Create jqxNavigationBar
+                $("#jqxnavigationbar").jqxNavigationBar({ width: 400, height: 400, expandMode: 'toggle', theme:'custom'});
+            });
+    </script>
+
+       <script type="text/javascript">
+           $(document).ready(function () {
+               // create jqxcalendar.
+               $("#jqxcalendar").jqxCalendar({ width: 220, height: 220, theme: 'custom', titleFormat: "MMMM yyyy" });
+           });
+        </script>
+
+        <ul id="photoGallery" style =" margin-left:318px">
+            <li><img class="images" src="~/Images/anuncio1.jpg" style="width:544Px; margin-right:45px"/></li>
+            <li><img class="images" src="~/Images/anuncio2.jpg" style="width:544px; margin-right:45px"></li>
+            <li><img class="images" src="~/Images/anuncio3.jpg" style="width:544px; margin-right:45px" /></li>
+        </ul>
+
+        <h3>@Html.Label("Ultimos Anuncios")</h3>
+
+        <div id='jqxnavigationbar' style =" margin-left:318px">
+            <div>Anuncio1
+            </div>
+            <div>alksdfjalksdjflkasjdfkjaskdjfkjakdfjlkaj alkñsdjflkasjd añlskdfj klasdjfklñja slkdj lkjafjkasdllfjka</div>
+            <div>Anuncio2
+            </div>
+            <div>aldkjfalkdsjf alskdjfklasdj fkljafiowuqe opulkasdj lkasdjf21ñjadklf jasldthakdsfñlaj</div>
+        </div>
+    </div>
+
+    <div class="calendario">
+       <div id='jqxcalendar'></div>
+    </div>
+
+   }
+
+
+    
