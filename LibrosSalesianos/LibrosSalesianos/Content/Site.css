@@ -4,21 +4,23 @@
     padding: 0;
 }
 
-#photoGallery {
-        margin-left: 318px;
-}
-
 .images {
     width:544Px; 
     margin-right:45px;
 }
-.cuerpo {
-    float:left;
+
+.news {
+    padding: 0px, 0px, 0px, 25px;
+    width: 62%;
+    border-bottom: 2px solid #e55e05;
+    font-size: 1.5em;
+    margin-left: 19%;
+    font-weight: 600;
+    color: #e55e05;
 }
+
 .calendario {
-    float:left;
-    margin-left: 180px;
-    margin-top: 50px;
+    float:right;
 }
 
 .margen {
@@ -80,12 +82,12 @@ mark {
 
 h3 {
     padding: 0px, 0px, 0px, 25px;
-    width: 625px;
+    width: 62%;
     border-bottom:2px solid #e55e05;
     font-size: 1.5em;
-    margin-left: 318px;
+    margin-left:19%;
     font-weight: 600;
-    color: #e55e05
+    color: #e55e05;
 }
 
 h1, h2,

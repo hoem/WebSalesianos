@@ -61,7 +61,6 @@ namespace LibrosSalesianos.Models
  
                 newItem.Quantity = 1;
                 Items.Add(newItem);
-
         }
 
         /**

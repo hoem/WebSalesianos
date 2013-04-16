@@ -7,7 +7,7 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <meta charset="utf-8" />
-        <title>@ViewBag.Title - Mi aplicación ASP.NET MVC</title>
+        <title>@ViewBag.Title - Colegio Salesianos</title>
         <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
         <meta name="viewport" content="width=device-width" />
         @Styles.Render("~/Content/css")
@@ -24,12 +24,13 @@
     </head>
     <body>
         <header>
+            
             <div class ="margen">
             <div class="imagen-cabezera" style="text-align:center" >
                 <img src="~/Images/banner.jpg" style="width:62%"/>
             </div>
 
-            <div class="float-right">
+            <div style ="margin-right:19%">
                 <section id="login">
                     @Html.Partial("_LoginPartial")
                 </section>
@@ -39,25 +40,21 @@
                
                 @Scripts.Render("~/Scripts/LoadMenu2.js")
                 <div id='jqxWidget'>
-                    <div id='jqxMenu', style="margin-left:315px">
+                    <div id='jqxMenu', style="margin-left: 19%">
                         <ul>
                             <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
-                            <li><a href="#">Comprar</a>
-                                <ul>
-                                    <li>@Html.ActionLink("Libros","ViewCart","Shoping")</li>
-                                </ul>
-                            </li>
+                            <li>@Html.ActionLink("Compra Libros","ShoppingCartExample","Shopping")</li>
                             <li>@Html.ActionLink("Acerca de", "About", "Home")</li>
                             <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
-                            <li>@Html.ActionLink("ShoppingCart","ShoppingCartExample","Shopping")</li>
                         </ul>
                     </div>
                 </div>
             </div>
                 </div>
+            
         </header>
         
-        @*@RenderSection("scripts", required: false)*@
+        @RenderSection("scripts", required: false)
         <div id="body">
             @RenderSection("featured", required: false)
             @*<section class="content-wrapper main-content clear-fix">*@

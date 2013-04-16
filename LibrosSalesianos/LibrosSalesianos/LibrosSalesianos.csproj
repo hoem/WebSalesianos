@@ -254,7 +254,7 @@
     <Content Include="Scripts\knockout-2.1.0.debug.js" />
     <Content Include="Scripts\knockout-2.1.0.js" />
     <Content Include="Scripts\LoadGarrely.js" />
-    <Content Include="Scripts\LoadGarrely2.js" />
+    <Content Include="Scripts\LoadGallery.js" />
     <Content Include="Scripts\LoadMenu.js" />
     <Content Include="Scripts\LoadMenu2.js" />
     <Content Include="Scripts\modernizr-2.5.3.js" />
