@@ -1,0 +1,59 @@
+﻿@using LibrosSalesianos.Models;
+@{
+    ViewBag.Title = "Página principal";
+}
+@section featured {
+
+    @*@Scripts.Render("~/Scripts/LoadGarrely.js")*@
+    <script type="text/javascript">
+        $(document).ready(function () {
+            // Create jqxNavigationBar
+            $("#jqxnavigationbar").jqxNavigationBar({ width: 400, height: 400, expandMode: 'toggle', theme: 'custom' });
+        });
+    </script>
+
+       <script type="text/javascript">
+           $(document).ready(function () {
+               // create jqxcalendar.
+               $("#jqxcalendar").jqxCalendar({ width: 220, height: 200, theme: 'custom', titleFormat: "MMMM yyyy" });
+           });
+        </script>
+  @Scripts.Render("~/Scripts/LoadGallery.js")
+    <div class="cuerpo">
+        <div class="news">@Html.Label("Noticias")</div>
+            <div class="calendario">
+                <div id='jqxcalendar'></div>              
+            </div>
+  
+
+        <ul id="photoGallery" style =" margin-left:19%">
+            <li><img class="images" src="~/Images/anuncio1.jpg" style="width:544Px; margin-right:45px"/></li>
+            <li><img class="images" src="~/Images/anuncio2.jpg" style="width:544px; margin-right:45px"></li>
+            <li><img class="images" src="~/Images/anuncio3.jpg" style="width:544px; margin-right:45px" /></li>
+        </ul>
+        
+        <h3>@Html.Label("Ultimos Anuncios")</h3>
+
+        <div id='jqxnavigationbar' style =" margin-left:19%">
+            <div>Vendo Libro "The Sword of Shannara"
+            </div>
+                <div> 
+                    @{ var book1 = new Book("012345", @"Libro de aventuras", 20.0f, "/Scripts/widgets/jqwidgets/images/books/The Sword of Shannara.jpg"); }
+                    @Html.Partial("_BookPartial", book1)
+                </div>
+            <div>Presto Libro "Deathstalker Rebellion"
+            </div>
+                <div>
+                    @{ var book2 = new Book("012345", "Es un libro genial en buen estado", 7.19f, "/Scripts/widgets/jqwidgets/images/books/Deathstalker Rebellion.jpg"); }
+                    @Html.Partial("_BookPartial", book2)
+                </div>
+            </div>
+        </div>
+    @*<div class="calendario">*@
+       @*<div id='jqxcalendar'></div>*@
+    @*</div>*@
+
+   }
+
+
+    

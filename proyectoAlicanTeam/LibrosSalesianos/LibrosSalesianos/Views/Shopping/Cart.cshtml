@@ -1,0 +1,65 @@
+﻿@using LibrosSalesianos.Models;
+@{
+    ViewBag.Title = "Cart";
+}
+
+<h3>Cart</h3>
+
+<div>
+    <div class="cartItems">
+        <div class="tables">
+            @{
+                var cart = (ShoppingCart)Model;
+                if (cart.Items.Count > 0)
+                {
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th colspan="2">Descripcion del libro</th>
+                                <th>Cantidad</th>
+                                <th>Precio</th>
+                                <th>Subtotal</th>
+                                <th>&nbsp;</th>
+                            </tr>
+                        </thead>
+                    </table>
+                    
+                    var total = 0.0f;
+                    foreach(var item in cart.Items)
+                    {
+                        @Html.Partial("_BookCartTable", item)
+                        total += item.TotalPrice;
+                    }
+                    
+                    <div class="summary">
+                        <table style="margin:10px;">
+                            <tr>
+                                <td>Subtotal sin impuestos</td>
+                                <td>@((total*100/118).ToString("C"))</td>
+                            </tr>
+                            <tr>
+                                <td>IVA (18%)</td>
+                                <td>@((total*18/118).ToString("C"))</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h2>TOTAL</h2>
+                                </td>
+                                <td>
+                                    <h2>@total.ToString("C")</h2> 
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                 }
+                 else
+                 {
+                    <p>Your cart is Empty!</p>
+                 }
+            }
+        </div>
+    </div>
+
+</div>
+
+</div>

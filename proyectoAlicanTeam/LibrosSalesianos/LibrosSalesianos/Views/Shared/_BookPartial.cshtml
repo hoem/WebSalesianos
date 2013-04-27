@@ -1,0 +1,14 @@
+﻿@model LibrosSalesianos.Models.Book
+@{
+    ViewBag.Title = "_BookPartial";
+    var book = Model;
+}
+
+<div id="Book-@book.ISBN">
+    <img src ="@book.Image" />
+    @Html.Label(@book.Description)
+    @Html.Label(@book.ISBN)
+    @Html.Label(@book.Price.ToString())
+    @Ajax.ActionLink("Al carrito!", "AddToCart","Shopping",new{controller="Shopping", isbn = book.ISBN, des = book.Description, img = book.Image, price = book.Price},new AjaxOptions{HttpMethod="POST", OnComplete="function(){return false;}"})
+
+</div>

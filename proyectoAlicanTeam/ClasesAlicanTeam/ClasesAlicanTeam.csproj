@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D84AAC3A-7C81-4B9A-9074-F0188188B4F6}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ClasesAlicanTeam</RootNamespace>
+    <AssemblyName>ClasesAlicanTeam</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CAD\CADAdministrator.cs" />
+    <Compile Include="CAD\CADAdvertisement.cs" />
+    <Compile Include="CAD\CADAlarm.cs" />
+    <Compile Include="CAD\CADBook.cs" />
+    <Compile Include="CAD\CADBusiness.cs" />
+    <Compile Include="CAD\CADCourse.cs" />
+    <Compile Include="CAD\CADCustomer.cs" />
+    <Compile Include="CAD\CADCustomerOrder.cs" />
+    <Compile Include="CAD\CADDistributor.cs" />
+    <Compile Include="CAD\CADLineCustomerOrder.cs" />
+    <Compile Include="CAD\CADLinePublishingOrder.cs" />
+    <Compile Include="CAD\CADNew.cs" />
+    <Compile Include="CAD\CADObligatorySubject.cs" />
+    <Compile Include="CAD\CADOptionalSubject.cs" />
+    <Compile Include="CAD\CADPublisher.cs" />
+    <Compile Include="CAD\CADPublishingOrder.cs" />
+    <Compile Include="CAD\CADSubject.cs" />
+    <Compile Include="CAD\CADUsedBook.cs" />
+    <Compile Include="CAD\CADUser.cs" />
+    <Compile Include="CAD\CADYear.cs" />
+    <Compile Include="CAD\CADYearsHasBooks.cs" />
+    <Compile Include="CAD\ICAD.cs" />
+    <Compile Include="EN\ENAdministrator.cs" />
+    <Compile Include="EN\ENAdvertisement.cs" />
+    <Compile Include="EN\ENAlarm.cs" />
+    <Compile Include="EN\ENBook.cs" />
+    <Compile Include="EN\ENBusiness.cs" />
+    <Compile Include="EN\ENCourse.cs" />
+    <Compile Include="EN\ENCustomer.cs" />
+    <Compile Include="EN\ENCustomerOrder.cs" />
+    <Compile Include="EN\ENDistributor.cs" />
+    <Compile Include="EN\ENLineCustomerOrder.cs" />
+    <Compile Include="EN\ENLinePublishingOrder.cs" />
+    <Compile Include="EN\ENNew.cs" />
+    <Compile Include="EN\ENObligatorySubject.cs" />
+    <Compile Include="EN\ENOptionalSubject.cs" />
+    <Compile Include="EN\ENPublisher.cs" />
+    <Compile Include="EN\ENPublishingOrder.cs" />
+    <Compile Include="EN\ENSubject.cs" />
+    <Compile Include="EN\ENUsedBook.cs" />
+    <Compile Include="EN\ENUser.cs" />
+    <Compile Include="EN\ENYear.cs" />
+    <Compile Include="EN\ENYearHasBooks.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

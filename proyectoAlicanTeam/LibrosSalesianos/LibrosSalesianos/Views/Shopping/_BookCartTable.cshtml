@@ -1,0 +1,43 @@
+﻿@model LibrosSalesianos.Models.CartItem
+@{
+    ViewBag.Title = "_BookPartial";
+    var item = Model;
+}
+
+<table class ="table">
+    <tbody>
+        <tr>
+            <td class="thumb">
+                <a href="#">
+                    <img src="@item.Image" title="@item.Description"/>
+                </a>
+            </td>
+            <td class="description">
+                <a href="#">
+                    @item.Description
+                </a>
+            </td>
+            <td class="quantity">
+                <script>
+                    function refreshQtyAndSubtotalFor(isbn, unitPrice) {
+                        var qty = $('#Qty-'+isbn).val();
+                        if (qty <= 0) {
+                            $.post('RemoveFromCart?isbn='+isbn).done(function () { location.reload(); });
+                        }
+                        else {
+                            var floatUnitPrice = parseFloat(unitPrice.replace(',', '.'));
+                            $('#Subtotal-'+isbn).html((parseFloat(qty) * floatUnitPrice).toFixed(2) + " €");
+                            $.post('SetQuantityItem?isbn=' + isbn + '&quantity=' + qty);
+                        }
+                    }
+                </script>
+                <input type="number" id="Qty-@item.BookIsbn" name="Qty" min="1" value= "@item.Quantity" onchange="refreshQtyAndSubtotalFor('@item.BookIsbn','@item.UnitPrice');" />
+            </td>
+            <td class="price">@item.UnitPrice.ToString("C")</td>
+            <td class="subtotal" id="Subtotal-@item.BookIsbn">@item.TotalPrice.ToString("C")</td>
+            <td class="remove">
+                @Html.ActionLink("Remove", "RemoveFromCart", new { controller = "Shopping", isbn = @item.BookIsbn })
+            </td>
+        </tr>
+    </tbody>
+</table>

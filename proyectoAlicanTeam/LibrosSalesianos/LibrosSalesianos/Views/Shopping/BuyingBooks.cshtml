@@ -1,0 +1,15 @@
+﻿@model List<LibrosSalesianos.Models.Book>
+
+@{
+    ViewBag.Title = "BuyingBooks";
+    var books = Model;
+}
+
+<h2>BuyingBooks</h2>
+@{
+    foreach(var book in books)
+    {
+        @Html.Partial("_BookPartial", book)
+        <br />
+    }
+}
