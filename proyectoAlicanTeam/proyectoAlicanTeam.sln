@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "proyectoAlicanTeam", "proyectoAlicanTeam\proyectoAlicanTeam.csproj", "{DAAA6A0B-9261-456D-8FF8-3A3BEB523918}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClasesAlicanTeam", "ClasesAlicanTeam\ClasesAlicanTeam.csproj", "{D84AAC3A-7C81-4B9A-9074-F0188188B4F6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Administracion", "Administracion\Administracion.csproj", "{F0271CDF-981A-4724-BE26-EEF5C49E7653}"
@@ -15,10 +13,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{DAAA6A0B-9261-456D-8FF8-3A3BEB523918}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DAAA6A0B-9261-456D-8FF8-3A3BEB523918}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DAAA6A0B-9261-456D-8FF8-3A3BEB523918}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DAAA6A0B-9261-456D-8FF8-3A3BEB523918}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D84AAC3A-7C81-4B9A-9074-F0188188B4F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D84AAC3A-7C81-4B9A-9074-F0188188B4F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D84AAC3A-7C81-4B9A-9074-F0188188B4F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
