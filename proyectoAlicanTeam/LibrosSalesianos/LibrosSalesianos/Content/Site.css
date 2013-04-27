@@ -23,7 +23,11 @@
     margin-top: 10px;
     border: 1px solid #ffa046;
     background-color: #91c1ea;
-    width: 22%;
+    width: 28%;
+}
+
+#summaryTotal {
+    padding: 0px;
 }
 
 .images {

@@ -19,15 +19,23 @@
             </td>
             <td class="quantity">
                 <script>
+                    function reload() { location.reload(); }
                     function refreshQtyAndSubtotalFor(isbn, unitPrice) {
                         var qty = $('#Qty-'+isbn).val();
                         if (qty <= 0) {
-                            $.post('RemoveFromCart?isbn='+isbn).done(function () { location.reload(); });
+                            $.post('RemoveFromCart?isbn=' + isbn).done(reload);
                         }
                         else {
                             var floatUnitPrice = parseFloat(unitPrice.replace(',', '.'));
                             $('#Subtotal-'+isbn).html((parseFloat(qty) * floatUnitPrice).toFixed(2) + " €");
                             $.post('SetQuantityItem?isbn=' + isbn + '&quantity=' + qty);
+                            var total = 0.0;
+                            $.each($('.subtotal'), function (i, td) {
+                                total += parseFloat($(td).html().replace(',', '.'));
+                            });
+                            $('#summaryTotalWithoutTax').html((total * 100 / 118).toFixed(2) + " €");
+                            $('#summaryTotalTax').html((total * 18 / 118).toFixed(2) + " €");
+                            $('#summaryTotal :first-child').html(total.toFixed(2) + " €");
                         }
                     }
                 </script>

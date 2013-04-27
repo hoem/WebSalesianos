@@ -35,17 +35,17 @@
                         <table style="margin:10px;">
                             <tr>
                                 <td>Subtotal sin impuestos</td>
-                                <td>@((total*100/118).ToString("C"))</td>
+                                <td id="summaryTotalWithoutTax">@((total*100/118).ToString("C"))</td>
                             </tr>
                             <tr>
                                 <td>IVA (18%)</td>
-                                <td>@((total*18/118).ToString("C"))</td>
+                                <td id="summaryTotalTax">@((total*18/118).ToString("C"))</td>
                             </tr>
                             <tr>
                                 <td>
                                     <h2>TOTAL</h2>
                                 </td>
-                                <td>
+                                <td id="summaryTotal">
                                     <h2>@total.ToString("C")</h2> 
                                 </td>
                             </tr>
