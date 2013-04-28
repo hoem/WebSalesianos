@@ -5,11 +5,15 @@
     var books = Model;
 }
 
-<h2>BuyingBooks</h2>
-@{
-    foreach(var book in books)
-    {
-        @Html.Partial("_BookPartial", book)
-        <br />
-    }
-}
+<h3>Compra de libros</h3>
+<div class="cartItems">
+    <div class="tables">
+        @{
+            foreach(var book in books)
+            {
+        
+                @Html.Partial("_BookPartial", book)
+            }
+        }
+       </div>
+</div>
