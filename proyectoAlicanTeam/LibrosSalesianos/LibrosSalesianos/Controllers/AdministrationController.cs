@@ -33,16 +33,14 @@ namespace LibrosSalesianos.Controllers
         {
             try
             {
-                /*
                 var reader = new ENBook();
                 var list = reader.ReadAll();
-                */
-                ///*
+                /*
                 var list = new List<Models.Book>();
                 list.Add(new Models.Book("1", "The First", 3.05f, "url/to/first.img"));
                 list.Add(new Models.Book("2", "The Second", 21.95f, "url/to/second.img"));
                 list.Add(new Models.Book("3", "The Third", 70.25f, "url/to/third.img"));
-                //*/
+                */
                 return Json(new { Result = "OK", Records = list, TotalRecordCount = list.Count });
             }
             catch (Exception ex)

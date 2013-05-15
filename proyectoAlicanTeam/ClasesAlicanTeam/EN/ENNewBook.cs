@@ -89,7 +89,7 @@ namespace ClasesAlicanTeam.EN
             this.id = (int)Row["ID"];
             this.idNewBooks = (int)Row["idNewBooks"];
             this.quantity = (int)Row["Quantity"];
-            this.price = (float)Row["Price"];
+            this.price = (float)(double)Row["Price"];
         }
 
         #endregion
