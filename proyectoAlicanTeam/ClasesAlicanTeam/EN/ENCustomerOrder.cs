@@ -173,7 +173,7 @@ namespace ClasesAlicanTeam.EN
             }
         }
 
-        public override void Save()
+        public override int Save()
         {
             try
             {
@@ -185,6 +185,7 @@ namespace ClasesAlicanTeam.EN
                         l.IdcustomerOrder = id;
                         l.Save();
                     }
+                    return id;
                 }
                 else
                 {
@@ -196,6 +197,7 @@ namespace ClasesAlicanTeam.EN
                         l.IdcustomerOrder = id;
                         l.Save();
                     }
+                    return 0;
                 }
             }
             catch (Exception ex)

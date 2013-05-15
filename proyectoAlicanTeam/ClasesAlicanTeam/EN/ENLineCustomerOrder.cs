@@ -91,18 +91,19 @@ namespace ClasesAlicanTeam.EN
             quantity = (int)  Row["Quantity"];
         }
 
-        public override void Save()
+        public override int Save()
         {
             try
             {
 
                 if (id == 0)
                 {
-                    id = cad.Insert(ToDataRow);
+                    return id = cad.Insert(ToDataRow);
                 }
                 else
                 {
                     cad.Update(ToDataRow);
+                    return 0;
                 }
             }
             catch (Exception ex)

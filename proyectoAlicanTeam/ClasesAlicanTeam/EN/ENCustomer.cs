@@ -310,7 +310,7 @@ namespace ClasesAlicanTeam.EN
             }
         }
 
-        public override void Save()
+        public override int Save()
         {
             ENUser us = new ENUser();
             us.Account = this.Account;
@@ -319,11 +319,12 @@ namespace ClasesAlicanTeam.EN
             this.idUser = us.Id;
             if (id == 0)
             {
-                this.id = cad.Insert(ToDataRow);
+                return this.id = cad.Insert(ToDataRow);
             }
             else
             {
                 cad.Update(ToDataRow);
+                return 0;
             }
         }
 

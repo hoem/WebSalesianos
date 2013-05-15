@@ -23,8 +23,8 @@ namespace ClasesAlicanTeam.EN
         public ENSubject(String name, ENCourse course)
         {
             cad = new CADSubject();
-            this.name = name;
-            this.course = course;
+            this.name = Name;
+            this.course = Course;
             id = 0;
         }
 
@@ -64,17 +64,18 @@ namespace ClasesAlicanTeam.EN
 
         }
 
-        public override void Save()
+        public override int Save()
         {
             try
             {
                 if (this.id == 0)
                 {
-                    id = cad.Insert(ToDataRow);
+                    return id = cad.Insert(ToDataRow);
                 }
                 else
                 {
                     cad.Update(ToDataRow);
+                    return 0;
                 }
             }
             catch (Exception ex)
@@ -96,7 +97,7 @@ namespace ClasesAlicanTeam.EN
             }
         }
 
-        public List<ENSubject> ReadAll()
+        public virtual List<ENSubject> ReadAll()
         {
             List<ENSubject> ret = new List<ENSubject>();
             DataTable table = cad.SelectAll();

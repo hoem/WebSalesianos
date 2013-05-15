@@ -25,7 +25,7 @@ namespace ClasesAlicanTeam.EN
         {
             get 
             {
-                if (customerToLoad != -1)
+                if (customerToLoad == null)
                 {
                     customer = customer.Read(customerToLoad);
                     customerToLoad = -1;
@@ -83,14 +83,14 @@ namespace ClasesAlicanTeam.EN
                 DataRow ret = cad.GetVoidRow;
                 ret["ID"] = this.id;
 
-                /*if (customerToLoad != -1)
-                {*/
-                    ret["idCustomers"] = customer.Id;
-                /*}
-                else
+                if (customer == null)
                 {
                     ret["idCustomers"] = this.customerToLoad;
-                }*/
+                }
+                else
+                {
+                    ret["idCustomers"] = this.customer.Id;
+                }
 
                 ret["Description"] = description;
                 ret["Picture"] = picture;
@@ -130,7 +130,7 @@ namespace ClasesAlicanTeam.EN
         public ENAdvertisement()
         {
             cad = new CADAdvertisement();
-            customer = new ENCustomer();
+            customer = null;
             this.id = 0;
             this.description = "";
             this.picture = "";

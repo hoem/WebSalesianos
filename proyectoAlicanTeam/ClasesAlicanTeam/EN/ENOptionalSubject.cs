@@ -10,7 +10,7 @@ namespace ClasesAlicanTeam.EN
     public class ENOptionalSubject : ENSubject
     {
         private int idSubject;
-        private int idCourse;
+        private int idBase;
 
         #region//Getters & Setters
 
@@ -33,11 +33,11 @@ namespace ClasesAlicanTeam.EN
         {
             get
             {
-                return this.idCourse;
+                return base.Course.Id;
             }
             set
             {
-                this.idCourse = value;
+                base.Course.Id = value;
             }
         }
 
@@ -52,7 +52,6 @@ namespace ClasesAlicanTeam.EN
                 DataRow ret = cad.GetVoidRow;
                 ret["ID"] = this.id;
                 ret["idSubject"] = this.idSubject;
-                ret["idCourse"] = this.idCourse;
                 return ret;
             }
         }
@@ -60,11 +59,7 @@ namespace ClasesAlicanTeam.EN
         protected override void FromRow(DataRow Row)
         {
             ENSubject s = base.Read((int)Row["idSubject"]);
-            this.id = s.Id;
-            this.Name = s.Name;
-            //this.IdCourse = s.IdCourse; //Se queja de que no existe!
-            throw new NotImplementedException();
-            this.idSubject = (int)Row["idSubject"];
+            this.IdSubject = s.Id;
             this.idSubject = (int)Row["idSubject"];
         }
 
@@ -80,9 +75,7 @@ namespace ClasesAlicanTeam.EN
             : base()
         {
             cad = new CADOptionalSubject();
-            idSubject = 0;
-            idCourse = 0;
-            
+            idSubject = 0;            
         }
 
         /// <summary>
@@ -92,10 +85,8 @@ namespace ClasesAlicanTeam.EN
         public ENOptionalSubject(int idSubject, int idCourse)
             : base()
         {
-
             cad = new CADOptionalSubject();
             this.idSubject = idSubject;
-            this.idCourse = idCourse;
         }
 
 
@@ -117,7 +108,7 @@ namespace ClasesAlicanTeam.EN
         /// Devuelve todos las editoriales nuevas que existen en la base de datos.
         /// </summary>
         /// <returns>Lista de ENPublisher con todos las editoriales nuevas de la base de datos.</returns>
-        public List<ENOptionalSubject> ReadAll()
+        /*public List<ENSubject> ReadAll()
         {
             List<ENOptionalSubject> ret = new List<ENOptionalSubject>();
             DataTable tabla = cad.SelectAll();
@@ -129,9 +120,19 @@ namespace ClasesAlicanTeam.EN
                 ret.Add(nuevo);
 
             }
-            return ret;
-        }
+            return (List<ENSubject>) ret;
+        }*/
 
+        public override int Save()
+        {
+            idBase = base.Save();
+            if (id == 0)
+            {
+                this.id = cad.Insert(ToDataRow);
+            }
+            return 0;
+            
+        }
         #endregion
     }
 }

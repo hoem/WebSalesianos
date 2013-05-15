@@ -11,7 +11,6 @@ namespace ClasesAlicanTeam.EN
     public class ENObligatorySubject : ENSubject
     {
         private int idSubject;
-        private int idCourse;
 
         #region//Getters & Setters
 
@@ -30,18 +29,6 @@ namespace ClasesAlicanTeam.EN
             }
         }
 
-        public int IdCourse
-        {
-            get
-            {
-                return this.idCourse;
-            }
-            set
-            {
-                this.idCourse = value;
-            }
-        }
-
         #endregion
 
         #region//Private Methods
@@ -53,7 +40,6 @@ namespace ClasesAlicanTeam.EN
                 DataRow ret = cad.GetVoidRow;
                 ret["ID"] = this.id;
                 ret["idSubject"] = this.idSubject;
-                ret["idCourse"] = this.idCourse;
                 return ret;
             }
         }
@@ -63,9 +49,6 @@ namespace ClasesAlicanTeam.EN
             ENSubject s = base.Read((int)Row["idSubject"]);
             this.id = s.Id;
             this.Name = s.Name;
-            //this.IdCourse = s.IdCourse; //Se queja de que no existe!
-            throw new NotImplementedException();
-            this.idSubject = (int)Row["idSubject"];
             this.idSubject = (int)Row["idSubject"];
         }
 
@@ -81,7 +64,6 @@ namespace ClasesAlicanTeam.EN
         {
             cad = new CADObligatorySubject();
             idSubject = 0;
-            idCourse = 0;
             
         }
 
@@ -95,7 +77,6 @@ namespace ClasesAlicanTeam.EN
 
             cad = new CADObligatorySubject();
             this.idSubject = idSubject;
-            this.idCourse = idCourse;
         }
 
 

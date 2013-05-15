@@ -36,16 +36,18 @@ namespace ClasesAlicanTeam.EN
 
         /// <summary>
         /// Guarda el objeto actual en la base de datos, insertandolo si es nuevo y modificandolo si ya está en la base de datos.
+        /// <returns>Si != 0 me sirve para guardar en las herencias tanto en el padre como en los hijos</returns>
         /// </summary>
-        public virtual void Save()
+        public virtual int Save()
         {
             if (id == 0)
             {
-                this.id = cad.Insert(ToDataRow);
+                return this.id = cad.Insert(ToDataRow);
             }
             else
             {
                 cad.Update(ToDataRow);
+                return 0;
             }
         }
 

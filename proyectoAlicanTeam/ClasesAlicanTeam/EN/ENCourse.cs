@@ -51,16 +51,16 @@ namespace ClasesAlicanTeam.EN
             get
             {
                 DataRow ret = cad.GetVoidRow;
-                ret["id"] = this.id;
-                ret["idCourse"] = course;
+                ret["ID"] = this.id;
+                ret["Course"] = course;
                 return ret;
             }
         }
         
         protected override void FromRow(DataRow Row)
         {
-            id = (int)Row["id"];
-            course = (string)Row["idCourse"];
+            id = (int)Row["ID"];
+            course = (string)Row["Course"];
         }
 
 
@@ -69,17 +69,18 @@ namespace ClasesAlicanTeam.EN
         /// </summary>
         /// <param name="course">ENCourse que se insertará en la base de datos.</param>
         /// <returns>Retorna el valor true en caso de que se haya insertado en la base de datos, false en caso contrario.</returns>
-        public override void Save()
+        public override int Save()
         {
             try
             {
                 if (this.id == 0)
                 {
-                    id = cad.Insert(ToDataRow);
+                    return id = cad.Insert(ToDataRow);
                 }
                 else
                 {
                     cad.Update(ToDataRow);
+                    return 0;
                 }
             }
             catch (Exception ex)
