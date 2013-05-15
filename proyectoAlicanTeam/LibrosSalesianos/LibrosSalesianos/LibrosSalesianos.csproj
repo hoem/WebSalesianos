@@ -178,11 +178,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\BDAlicanTeam.mdf" />
-    <Content Include="App_Data\BDAlicanTeam_log.ldf">
-      <DependentUpon>BDAlicanTeam.mdf</DependentUpon>
-    </Content>
-    <Content Include="BDAlicanTeam.mdf" />
     <Content Include="Content\themes\base\images\animated-overlay.gif" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -251,7 +246,6 @@
     <Content Include="Content\themes\metroblue\images\ui-icons_d4d4d4_0.png" />
     <Content Include="Content\themes\metroblue\images\ui-icons_ffffff_0.png" />
     <Content Include="Content\themes\metroblue\jquery-ui.css" />
-    <Content Include="Content\themes\metroblue\jquery-ui2.css" />
     <Content Include="Content\themes\redmond\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\redmond\images\ui-bg_flat_55_fbec88_40x100.png" />
     <Content Include="Content\themes\redmond\images\ui-bg_glass_75_d0e5f5_1x400.png" />
@@ -271,21 +265,12 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\themes\base\images\Thumbs.db" />
-    <Content Include="Images\Caratulas\Thumbs.db" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Images\anuncio1.jpg" />
     <Content Include="Images\anuncio2.jpg" />
     <Content Include="Images\anuncio3.jpg" />
     <Content Include="Images\banner.jpg" />
     <Content Include="Images\banner2.jpg" />
-    <Content Include="Images\Caratulas\Filosofia-3.jpg" />
-    <Content Include="Images\Caratulas\Informatica-1.jpg" />
-    <Content Include="Images\Caratulas\Informatica-3.jpg" />
-    <Content Include="Images\Caratulas\Informatica-4.jpg" />
-    <Content Include="Images\Caratulas\Ingles-2.jpg" />
-    <Content Include="Images\Caratulas\Lengua-1.jpg" />
-    <Content Include="Images\Caratulas\matematica-1.jpg" />
-    <Content Include="Images\Caratulas\Matematicas-2.jpg" />
     <Content Include="Images\imageNature7.jpg" />
     <Content Include="Images\portada kiwi.jpg" />
     <Content Include="Scripts\jquery-1.7.1.js" />
@@ -293,7 +278,6 @@
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-ui-1.8.20.js" />
     <Content Include="Scripts\jquery-ui-1.8.20.min.js" />
-    <Content Include="Scripts\jquery-ui.js" />
     <Content Include="Scripts\jquery.jtable.js" />
     <Content Include="Scripts\jquery.jtable.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
@@ -391,12 +375,6 @@
     <Content Include="Scripts\LoadMenu.js" />
     <Content Include="Scripts\LoadMenu2.js" />
     <Content Include="Scripts\modernizr-2.5.3.js" />
-    <None Include="Scripts\jquery-1.9.0.intellisense.js" />
-    <Content Include="Scripts\jquery-1.9.0.js" />
-    <Content Include="Scripts\jquery-1.9.0.min.js" />
-    <Content Include="Scripts\jquery-ui-1.10.0.js" />
-    <Content Include="Scripts\jquery-ui-1.10.0.min.js" />
-    <Content Include="Scripts\jquery-ui-1.9.2.min.js" />
     <Content Include="Scripts\widgets\jqwidgets\globalization\globalize.culture.cs-CZ.js" />
     <Content Include="Scripts\widgets\jqwidgets\globalization\globalize.culture.de-DE.js" />
     <Content Include="Scripts\widgets\jqwidgets\globalization\globalize.culture.en-CA.js" />
@@ -936,10 +914,10 @@
     <Content Include="Scripts\jtable\themes\metro\pink\jtable.less" />
     <Content Include="Scripts\jtable\themes\metro\purple\jtable.less" />
     <Content Include="Scripts\jtable\themes\metro\red\jtable.less" />
-    <Content Include="Scripts\jquery-1.9.0.min.map" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />
+    <Folder Include="App_Data\" />
     <Folder Include="Productos\" />
   </ItemGroup>
   <ItemGroup>
