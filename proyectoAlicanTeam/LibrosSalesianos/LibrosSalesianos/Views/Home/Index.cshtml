@@ -1,6 +1,8 @@
 ﻿@using LibrosSalesianos.Models;
+@using ClasesAlicanTeam.EN;
 @{
     ViewBag.Title = "Página principal";
+    List<ENAdvertisement> ads = new ENAdvertisement().ReadAll();
 }
 @section featured {
 
@@ -35,19 +37,13 @@
         <h3>@Html.Label("Ultimos Anuncios")</h3>
 
         <div id='jqxnavigationbar' style =" margin-left:19%">
-            <div>Vendo Libro "The Sword of Shannara"
+            @foreach(ENAdvertisement ad in ads){
+            <div> @ad.Description
             </div>
                 <div> 
-                    @{ var book1 = new Book("012345", @"Libro de aventuras", 20.0f, "/Scripts/widgets/jqwidgets/images/books/The Sword of Shannara.jpg"); }
+                    @{ var book1 = ad.Books[0]; }
                     @Html.Partial("_BookPartial", book1)
-                </div>
-            <div>Presto Libro "Deathstalker Rebellion"
-            </div>
-                <div>
-                    @{ var book2 = new Book("012345", "Es un libro genial en buen estado", 7.19f, "/Scripts/widgets/jqwidgets/images/books/Deathstalker Rebellion.jpg"); }
-                    @Html.Partial("_BookPartial", book2)
-                </div>
-            </div>
+                </div>}
         </div>
     @*<div class="calendario">*@
        @*<div id='jqxcalendar'></div>*@

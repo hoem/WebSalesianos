@@ -1,5 +1,34 @@
-﻿@{
+﻿@using ClasesAlicanTeam.EN;
+@{
     ViewBag.Title = "Advertisement";
 }
 
-<h2>Advertisement</h2>
+ @Scripts.Render("~/Scripts/widgets/jqwidgets/jqxlistmenu.js")
+ @Scripts.Render("~/Scripts/widgets/jqwidgets/jqxpanel.js")
+ @Scripts.Render("~/Scripts/widgets/jqwidgets/jqxscrollbar.js")
+ @Scripts.Render("~/Scripts/widgets/jqwidgets/jqxbuttons.js")
+
+<h3>Anuncios</h3>
+
+<script type="text/javascript">
+        $(document).ready(function () {
+            $('#list').jqxListMenu({ width: 700, enableScrolling: false, showHeader: true, showBackButton: true, showFilter: false, theme:'custom' });
+        });
+    </script>
+
+<div  style="margin-left: 19%">
+<ul id="list" data-role="listmenu"><!--
+        <li>Mates
+            <ul data-role="listmenu">
+                <div>
+                    @{ var book2 = new Book("012345", "Es un libro genial en buen estado", 7.19f, "/Scripts/widgets/jqwidgets/images/books/Deathstalker Rebellion.jpg"); }
+                    @Html.Partial("_BookPartial", book2)
+                </div>
+            </ul>
+      </li>-->
+</ul>
+    </div>
+
+<div style="float:right; margin-right:19%">@Html.ActionLink("Nuevo Anuncio","AnnounceForm","Announce")</div>
+        
+                

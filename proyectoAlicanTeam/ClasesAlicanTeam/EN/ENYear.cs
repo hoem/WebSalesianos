@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Data;
 using ClasesAlicanTeam.CAD;
 
 namespace ClasesAlicanTeam.EN
 {
-    public class ENYear
+    public class ENYear : AEN
     {
         private int year;
         private CADYear cadYear;
@@ -23,6 +24,17 @@ namespace ClasesAlicanTeam.EN
             cadYear = new CADYear();
         }
 
+        protected override DataRow ToDataRow
+        {
+            get { throw new NotImplementedException(); }
+        }
+
+        protected override void FromRow(DataRow Row)
+        {
+            throw new NotImplementedException();
+        }
+
+        /*
         public bool insert()
         {
             return cadYear.insert(this);
@@ -42,6 +54,7 @@ namespace ClasesAlicanTeam.EN
         {
             return cadYear.readAll();
         }
+        */
 
         public int Year
         {

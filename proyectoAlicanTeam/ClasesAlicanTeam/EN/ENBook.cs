@@ -2,151 +2,274 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Data;
 using ClasesAlicanTeam.CAD;
 
 namespace ClasesAlicanTeam.EN
 {
-    public class ENBook
+    public class ENBook : AEN
     {
-        protected CADBook cadBook;
-        protected String idBook;
-        protected ENSubject subject; 
-        protected ENCourse course; 
-        protected String cif;
-        protected ENYear years;
-        protected String name;
-        protected int quantity;
-        protected String description;
-        protected String image;
+        private string idBook;
+        private ENSubject subject;
+        private int subjectToLoad;
+        private int businessToLoad;
+        private ENBusiness business;
+        private string name;
+        private string description;
+        private string picture;
 
-        public ENBook()
-        {
-            cadBook = new CADBook();
-            subject = new ENSubject();
-            course = new ENCourse();
-            
-        }
+        #region//Getters & Setters
 
-        public ENBook(String idBook, ENSubject subject, ENCourse course, 
-            String cif, ENYear years, String name, int quantity, String description)
+        /// <summary>
+        /// Devuelve y establece el idBook del libro.
+        /// </summary>
+        public string IdBook
         {
-            this.cadBook = new CADBook();
-            this.idBook = idBook;
-            this.subject = subject;
-            this.course = course;
-            this.cif = cif;
-            if(years != null)
-                this.years = years;
-            years = new ENYear(System.DateTime.Today.Year);
-            this.name = name;
-            this.quantity = quantity;
-            this.description = description;
-        }
-
-        public bool insert()
-        {
-            try
+            get
             {
-                return cadBook.insert(this);
+                return this.idBook;
             }
-            catch (Exception ex)
+
+            set
             {
-                throw ex;
+                this.idBook = value;
             }
         }
 
-        public bool update()
-        {
-            try
-            {
-                return cadBook.update(this);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        public bool delete()
-        {
-            try
-            {
-                return cadBook.delete(this);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        public ENBook read(String id)
-        {
-            return cadBook.read(id);
-        }
-
-        public List<ENBook> readAll()
-        {
-            return cadBook.readAll();          
-        }
-
-        public CADBook CADBook
-        {
-            get { return cadBook; }
-            set { cadBook = value; }
-        }
-
-        public String IDBook
-        {
-            get { return idBook; }
-            set { idBook = value; }
-        }
-
+        /// <summary>
+        /// Devuelve y establece la asignatura del libro.
+        /// </summary>
         public ENSubject Subject
         {
-            get { return subject; }
-            set { subject = value; }
+            get
+            {
+                if (subjectToLoad != -1)
+                {
+                    subject = subject.Read(subjectToLoad);
+                    subjectToLoad = -1;
+                }
+
+                return this.subject;
+            }
+            set
+            {
+                this.subject = value;
+                subjectToLoad = -1;
+            }
         }
 
-        public ENCourse Course
+        /// <summary>
+        /// Devuelve y establece el Bussinesss del libro.
+        /// </summary>
+        public ENBusiness Bussiness
         {
-            get { return course; }
-            set { course = value; }
+            get
+            {
+                if (businessToLoad != -1)
+                {
+                    business = business.Read(businessToLoad);
+                    businessToLoad = -1;
+                }
+
+                return this.business;
+            }
+            set
+            {
+                this.business = value;
+            }
         }
 
-        public String CIF
+        /// <summary>
+        /// Devuelve y establece el nombre del libro.
+        /// </summary>
+        public string Name
         {
-            get { return cif; }
-            set { cif = value; }
+            get
+            {
+                return name;
+            }
+            set
+            {
+                name = value;
+            }
         }
 
-        public ENYear Years
+        /// <summary>
+        /// Devuelve y establece la descripcion del libro.
+        /// </summary>
+        public string Description
         {
-            get { return years; }
-            set { years = value; }
+            get
+            {
+                return description;
+            }
+            set
+            {
+                description = value;
+            }
         }
 
-        public String Name
+        /// <summary>
+        /// Devuelve y establece la ruta a la imagen del libro.
+        /// </summary>
+        public string Picture
         {
-            get { return name; }
-            set { name = value; }
+            get
+            {
+                return picture;
+            }
+            set
+            {
+                picture = value;
+            }
         }
 
-        public int Quantity
+        #endregion
+
+        #region//Private Methods
+
+        protected override DataRow ToDataRow
         {
-            get { return quantity; }
-            set { quantity = value; }
+            get 
+            {
+                DataRow ret = cad.GetVoidRow;
+                ret["ID"] = this.id;
+                ret["idBooks"] = this.idBook;
+
+                if (subjectToLoad != -1)
+                {
+                    ret["idSubject"] = this.subject.Id;
+                }
+                else
+                {
+                    ret["idSubject"] = this.subjectToLoad;
+                }
+
+                if (businessToLoad != -1)
+                {
+                    ret["iDBusiness"] = this.business.Id;
+                }
+                else
+                {
+                    ret["idBusiness"] = this.businessToLoad;
+                }
+                ret["Name"] = this.name;
+                ret["Description"] = this.description;
+                ret["Picture"] = this.picture;
+                return ret;
+            }
         }
 
-        public String Description
+        protected override void FromRow(DataRow Row)
         {
-            get { return description; }
-            set { description = value; }
+            this.id = (int)Row["ID"];
+            this.idBook = (string)Row["idBooks"];
+            this.businessToLoad = (int)Row["idBusiness"];
+            this.subjectToLoad = (int)Row["idSubject"];
+            this.name = (string)Row["Name"];
+            this.description = (string)Row["Description"];
+            this.picture = (string)Row["Picture"];
         }
 
-        public String Image
+        #endregion
+
+        #region//Public Methods
+
+        /// <summary>
+        /// Constructor por defecto que inicializa el objeto con sus campos vacios.
+        /// </summary>
+        public ENBook()
         {
-            get { return image; }
-            set { image = value; }
+            cad = new CADBook();
+            id = 0;
+            idBook = "";
+            subject = new ENSubject();
+            business = new ENBusiness();
+            name = "";
+            description = "";
+            picture = "";
+            subjectToLoad = 0;
+            businessToLoad = 0;
         }
+
+        /// <summary>
+        /// Constructor sobrecargado que inicializa el objeto con los datos pasados por parámetro.
+        /// </summary>
+        /// <param name="idBook">idBook del libro.</param>
+        /// <param name="subject">Asignatura a la que pertenece el libro.</param>
+        /// <param name="business">Business del libro.</param>
+        /// <param name="name">Nombre del libro.</param>
+        /// <param name="description">Descripcion del libro.</param>
+        /// <param name="picture">Ruta a la imagen del libro.</param>
+        public ENBook(string idBook, ENSubject subject, ENBusiness business, string name, string description, string picture)
+        {
+            this.idBook = idBook;
+            this.id = 0;
+            this.subject = subject;
+            this.business = business;
+            this.name = name;
+            this.description = description;
+            this.picture = picture;
+            subjectToLoad = -1;
+            businessToLoad = -1;
+            cad = new CADBook();
+        }
+
+        /// <summary>
+        /// Busca el libro en la base de datos y lo devuelve.
+        /// </summary>
+        /// <param name="id">Identificador del libro a buscar.</param>
+        /// <returns>ENBook del libro encontrado en la base de datos.</returns>
+        public ENBook Read(int id)
+        {
+            cad = new CADBook();
+            ENBook ret = new ENBook();
+            List<object> param = new List<object>();
+            param.Add((object)id);
+            ret.FromRow(cad.Select(param));
+            return ret;
+        }
+
+        /// <summary>
+        /// Devuelve todos los libros que existen en la base de datos.
+        /// </summary>
+        /// <returns>Lista de ENBooks con todos los libros de la base de datos.</returns>
+        public List<ENBook> ReadAll()
+        {
+            List<ENBook> ret = new List<ENBook>();
+            DataTable tabla = cad.SelectAll();
+            foreach (DataRow rows in tabla.Rows)
+            {
+                ENBook nuevo = new ENBook();
+                nuevo.FromRow(rows);
+                ret.Add(nuevo);
+            }
+            return ret;
+        }
+
+        public List<ENBook> Filter(String where)
+        {
+            List<ENBook> ret = new List<ENBook>();
+            DataTable table = cad.SelectWhere(where);
+
+            try
+            {
+
+                foreach (DataRow row in table.Rows)
+                {
+                    ENBook course = new ENBook();
+                    course.FromRow(row);
+                    ret.Add(course);
+
+                }
+                return ret;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        #endregion
     }
 }

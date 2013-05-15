@@ -31,7 +31,7 @@ namespace Administracion
         {
             comboBoxNuevoLibroCurso.Items.Clear();
             ENCourse course = new ENCourse();
-            List<ENCourse> lcourse = course.readAll();
+            List<ENCourse> lcourse = course.ReadAll();
             foreach (ENCourse c in lcourse)
             {
                 comboBoxNuevoLibroCurso.Items.Add(c.Courses);
@@ -148,7 +148,7 @@ namespace Administracion
                // try
                 //{
                     ENCourse course = new ENCourse();
-                    course = course.read(comboBoxNuevoLibroCurso.Text);
+                    course = course.Read(comboBoxNuevoLibroCurso.Text);
                     ENPublisher publisher = new ENPublisher();
                     publisher = publisher.read(comboBoxNuevoLibroEditorial.Text);
                     ENSubject subject = new ENSubject();
@@ -276,7 +276,7 @@ namespace Administracion
         private void initializeDataGridCursos()
         {
             ENCourse course = new ENCourse();
-            List<ENCourse> list = course.readAll();
+            List<ENCourse> list = course.ReadAll();
             dataGridViewMostrarCursos.Rows.Clear();
             foreach (ENCourse c in list)
             {
@@ -316,7 +316,7 @@ namespace Administracion
                 try
                 {
                     ENCourse course = new ENCourse();
-                    course = course.read(textBoxEliminarCurso.Text);
+                    course = course.Read(textBoxEliminarCurso.Text);
                     course.delete();
                     textBoxEliminarCurso.Clear();
                     initializeDataGridCursos();

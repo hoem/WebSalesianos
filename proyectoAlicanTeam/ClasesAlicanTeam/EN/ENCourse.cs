@@ -3,13 +3,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Data;
 
 namespace ClasesAlicanTeam.EN
 {
-    public class ENCourse
+    public class ENCourse : AEN
     {
-        private CADCourse cad;
-        private String courses;
+        
+        private String course;
 
         /// <summary>
         /// Constructor por defecto que inicializa el objeto con sus campos vacíos.
@@ -17,6 +18,7 @@ namespace ClasesAlicanTeam.EN
         public ENCourse()
         {
             cad = new CADCourse();
+            id = 0;
         }
 
         /// <summary>
@@ -25,8 +27,9 @@ namespace ClasesAlicanTeam.EN
         /// <param name="courses">Nombre de los cursos.</param>
         public ENCourse(String courses)
         {
-            this.courses = courses;
+            this.course = courses;
             cad = new CADCourse();
+            id = 0;
         }
 
         #region
@@ -35,21 +38,49 @@ namespace ClasesAlicanTeam.EN
         /// </summary>
         public String Courses
         {
-            get { return courses; }
-            set { courses = value; }
+            get { return course; }
+            set { course = value; }
         }
+
+
         #endregion
+
+
+        protected override DataRow ToDataRow
+        {
+            get
+            {
+                DataRow ret = cad.GetVoidRow;
+                ret["id"] = this.id;
+                ret["idCourse"] = course;
+                return ret;
+            }
+        }
+        
+        protected override void FromRow(DataRow Row)
+        {
+            id = (int)Row["id"];
+            course = (string)Row["idCourse"];
+        }
+
 
         /// <summary>
         /// Inserta el curso que se le pasa por parámetro en la base de datos.
         /// </summary>
         /// <param name="course">ENCourse que se insertará en la base de datos.</param>
         /// <returns>Retorna el valor true en caso de que se haya insertado en la base de datos, false en caso contrario.</returns>
-        public Boolean insert()
+        public override void Save()
         {
             try
             {
-                return cad.insert(this);
+                if (this.id == 0)
+                {
+                    id = cad.Insert(ToDataRow);
+                }
+                else
+                {
+                    cad.Update(ToDataRow);
+                }
             }
             catch (Exception ex)
             {
@@ -57,34 +88,18 @@ namespace ClasesAlicanTeam.EN
             }
         }
 
-        /// <summary>
-        /// Actualiza el curso que se le pasa por parámetro.
-        /// </summary>
-        /// <param name="course">ENCourse que se actualizará en la base de datos.</param>
-        /// <returns>Retorna el valor true en caso de que se haya modificado en la base de datos, false en caso contrario</returns>
-        public Boolean update()
-        {
-            try
-            {
-                return cad.update(this);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
 
         /// <summary>
         /// Elimina de la base de datos el curso que se le pasa por parámentro.
         /// </summary>
         /// <param name="course">ENCourse que se eliminará en la base de datos.</param>
         /// <returns>Retorna el valor true en caso de que se haya eliminado de la base de datos, false en caso contrario.</returns>
-        public Boolean delete()
+        public override void Delete()
         {
 
             try
             {
-                return cad.delete(this);
+                 cad.Delete(ToDataRow);
             }
             catch (Exception ex)
             {
@@ -97,11 +112,18 @@ namespace ClasesAlicanTeam.EN
         /// </summary>
         /// <param name="courses">String del curso a buscar en la base de datos.</param>
         /// <returns>ENCourse del curso encontrado en la base de datos.</returns>
-        public ENCourse read(String courses)
+        public ENCourse Read(int id)
         {
             try
             {
-                return cad.read(courses);
+                ENCourse ret = new ENCourse();
+                
+                List<object> param = new List<object>();
+                param.Add((object) id);             
+                
+                ret.FromRow(cad.Select(param));
+
+                return ret;
             }
             catch (Exception ex)
             {
@@ -113,11 +135,45 @@ namespace ClasesAlicanTeam.EN
         /// Devuelve todos los cursos que existen en la base de datos.
         /// </summary>
         /// <returns>IList de ENCourse con todos los cursos almacenados en la base de datos.</returns>
-        public List<ENCourse> readAll()
+        public List<ENCourse> ReadAll()
         {
+            List<ENCourse> ret = new List<ENCourse>();
+            DataTable table = cad.SelectAll();
+
             try
             {
-                return cad.readAll();
+
+                foreach (DataRow row in table.Rows)
+                {
+                    ENCourse course = new ENCourse();
+                    course.FromRow(row);
+                    ret.Add(course);
+
+                }
+                return ret;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public List<ENCourse> Filter(String where)
+        {
+            List<ENCourse> ret = new List<ENCourse>();
+            DataTable table = cad.SelectWhere(where);
+
+            try
+            {
+
+                foreach (DataRow row in table.Rows)
+                {
+                    ENCourse course = new ENCourse();
+                    course.FromRow(row);
+                    ret.Add(course);
+
+                }
+                return ret;
             }
             catch (Exception ex)
             {

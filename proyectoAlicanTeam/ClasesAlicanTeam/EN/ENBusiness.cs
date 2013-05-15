@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using ClasesAlicanTeam.CAD;
 
 namespace ClasesAlicanTeam.EN
 {
-    public class ENBusiness
+    public class ENBusiness : AEN
     {
         protected CADBusiness cadBusiness;
         protected String cif;
@@ -27,6 +28,7 @@ namespace ClasesAlicanTeam.EN
             this.address = address;
             this.telephone = telephone;
             this.email = email;
+            id = 0;
             cadBusiness = new CADBusiness();
         }
 
@@ -60,11 +62,47 @@ namespace ClasesAlicanTeam.EN
             set { email = value; }
         }
 
-        public Boolean insert()
+        protected override DataRow ToDataRow
+        {
+            get
+            {
+                DataRow ret = cad.GetVoidRow;
+                ret["id"] = id;
+                ret["cif"] = cif;
+                ret["name"] = name;
+                ret["adress"] = address;
+                ret["telephone"] = telephone;
+                ret["email"] = email;
+                return ret;
+            }
+        }
+
+        protected override void FromRow(DataRow Row)
+        {
+            
+            id = (int)Row["id"];
+            cif = (string)Row["cif"];
+            name =(string) Row["name"];
+            address = (string)Row["address"];
+            telephone = (int)Row["telephone"];
+            email = (string)Row["email"];
+            
+        }
+
+        public override void Save()
         {
             try
             {
-                return cadBusiness.insert(this);
+                if (id == 0)
+                {
+                    id = cad.Insert(ToDataRow);
+
+                }
+
+                else
+                {
+                    cad.Update(ToDataRow);
+                }
             }
             catch (Exception ex)
             {
@@ -72,11 +110,11 @@ namespace ClasesAlicanTeam.EN
             }
         }
 
-        public Boolean update()
+        public override void Delete()
         {
             try
             {
-                return cadBusiness.update(this);
+                cad.Delete(ToDataRow);
             }
             catch (Exception ex)
             {
@@ -84,12 +122,19 @@ namespace ClasesAlicanTeam.EN
             }
         }
 
-        public Boolean delete()
+        public ENBusiness Read(int id)
         {
-
             try
             {
-                return cadBusiness.delete(this);
+                cad = new CADBusiness();
+                ENBusiness ret = new ENBusiness();
+
+                List<object> param = new List<object>();
+                param.Add((object)id);
+
+                ret.FromRow(cad.Select(param));
+
+                return ret;
             }
             catch (Exception ex)
             {
@@ -97,15 +142,53 @@ namespace ClasesAlicanTeam.EN
             }
         }
 
-        public ENBusiness read(String cif)
+        public List<ENBusiness> ReadAll()
         {
-            return cadBusiness.read(cif);
+            List<ENBusiness> ret = new List<ENBusiness>();
+            DataTable table = cad.SelectAll();
+
+            try
+            {
+
+                foreach (DataRow row in table.Rows)
+                {
+                    ENBusiness course = new ENBusiness();
+                    course.FromRow(row);
+                    ret.Add(course);
+
+                }
+                return ret;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
-        public IList<ENBusiness> readAll()
+        public List<ENBusiness> Filter(String where)
         {
-            return cadBusiness.readAll();
+            List<ENBusiness> ret = new List<ENBusiness>();
+            DataTable table = cad.SelectWhere(where);
+
+            try
+            {
+
+                foreach (DataRow row in table.Rows)
+                {
+                    ENBusiness course = new ENBusiness();
+                    course.FromRow(row);
+                    ret.Add(course);
+
+                }
+                return ret;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
+
+
 
     }
 }

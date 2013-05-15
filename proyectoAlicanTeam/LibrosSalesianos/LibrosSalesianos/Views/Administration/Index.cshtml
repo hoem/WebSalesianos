@@ -1,0 +1,14 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+@Scripts.Render("~/Scripts/jquery-ui-1.8.20.js")
+@Scripts.Render("~/Scripts/jtable/jquery.jtable.js")
+
+<h2>Bienvenido Administrador!</h2>
+
+<nav id="navAdmin">
+    @Ajax.ActionLink("Books","TableBooks","Administration",new AjaxOptions{UpdateTargetId = "tableContainer"})
+</nav>
+
+<div id="tableContainer"></div>

@@ -20,5 +20,10 @@ namespace LibrosSalesianos.Controllers
         {
             return View();
         }
+
+        public ActionResult AnnounceForm()
+        {
+            return View();
+        }
     }
 }

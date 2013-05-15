@@ -11,6 +11,8 @@
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <meta name="viewport" content="width=device-width" />
     @Styles.Render("~/Content/css")
+        @Styles.Render("~/Content/themes/metroblue/jquery-ui.css")
+        @Styles.Render("~/Scripts/jtable/themes/metro/blue/jtable.css")
     @Styles.Render("~/Scripts/widgets/jqwidgets/styles/jqx.base.css")
     @Styles.Render("~/Scripts/widgets/jqwidgets/styles/custom.css")
         
@@ -63,6 +65,7 @@
                             <li>@Html.ActionLink("Anuncios", "Advertisement", "Announce")</li>
                             <li>@Html.ActionLink("Acerca de", "About", "Home")</li>
                             <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
+                            <li>@Html.ActionLink("Administracion", "Index", "Administration")</li>
                         </ul>
                     </div>
                 </div>

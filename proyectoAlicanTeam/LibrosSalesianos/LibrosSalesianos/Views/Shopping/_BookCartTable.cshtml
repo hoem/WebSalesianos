@@ -44,7 +44,9 @@
             <td class="price">@item.UnitPrice.ToString("C")</td>
             <td class="subtotal" id="Subtotal-@item.BookIsbn">@item.TotalPrice.ToString("C")</td>
             <td class="remove">
-                @Html.ActionLink("Remove", "RemoveFromCart", new { controller = "Shopping", isbn = @item.BookIsbn })
+                <div class="linkbutton">
+                    @Html.ActionLink("Remove", "RemoveFromCart", new { controller = "Shopping", isbn = @item.BookIsbn }, new { @class = "removecart" })
+                </div>
             </td>
         </tr>
     </tbody>

@@ -11,9 +11,24 @@ namespace LibrosSalesianos.Models
             get { return this.image; }
             set { this.image = value; }
         }
+        public string Picture
+        {
+            get { return this.Image; }
+            set { this.Image = value; }
+        }
         public string ISBN { 
             get { return this.isbn; }
             set { this.isbn = value; }
+        }
+        public string IdBook
+        {
+            get { return this.ISBN; }
+            set { this.ISBN = value; }
+        }
+        public string Name
+        {
+            get { return this.ISBN; }
+            set { this.ISBN = value; }
         }
         public string Description { 
             get { return this.description; }

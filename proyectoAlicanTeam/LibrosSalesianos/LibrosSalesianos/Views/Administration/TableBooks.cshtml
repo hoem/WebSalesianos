@@ -1,0 +1,52 @@
+﻿@{
+    ViewBag.Title = "TableBooks";
+}
+
+<h2>TableBooks</h2>
+<p>I WILL BE A TABLE!</p>
+<div id="tableBooks"></div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#tableBooks').jtable({
+            title: 'General Books',
+            paging: false, //Enable paging
+            //pageSize: 10, //Set page size (default: 10)
+            sorting: false, //Enable sorting
+            //defaultSorting: 'Name ASC', //Set default sorting
+            actions: {
+                listAction: '/Administration/BookList',
+                createAction: '/Administration/BookCreate',
+                updateAction: '/Administration/BookUpdate',
+                deleteAction: '/Administration/BookDelete'
+            },
+            fields: {
+                IdBook: {
+                    key: true,
+                    create: false,
+                    edit: false,
+                    list: false
+                },
+                Name: {
+                    title: 'Nombre'
+                },
+                Description: {
+                    title: 'Descripción'
+                },
+                Picture: {
+                    title: 'Imagen'
+                }
+            }
+        });
+        /*
+        private string idBook;
+        private ENSubject subject;
+        private int subjectToLoad;
+        private int businessToLoad;
+        private ENBusiness business;
+        private string name;
+        private string description;
+        private string picture;
+        */
+        $('#tableBooks').jtable('load');
+    });
+</script>

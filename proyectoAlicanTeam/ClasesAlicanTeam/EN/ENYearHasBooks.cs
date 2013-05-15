@@ -6,7 +6,7 @@ using ClasesAlicanTeam.CAD;
 
 namespace ClasesAlicanTeam.EN
 {
-    public class ENYearHasBooks 
+    public class ENYearHasBooks
     {
         private ENYear year;
         private ENBook book;
@@ -25,6 +25,7 @@ namespace ClasesAlicanTeam.EN
             this.year = year;
         }
 
+        /*
         public  bool insert()
         {
             return cadYearHasBook.insert(this);
@@ -47,6 +48,7 @@ namespace ClasesAlicanTeam.EN
         public List<ENBook> readYear(ENYear oldYear){
             return cadYearHasBook.readYear(oldYear);
         }
+        */
 
         public ENBook Book
         {

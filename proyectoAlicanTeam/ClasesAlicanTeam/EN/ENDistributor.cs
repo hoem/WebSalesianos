@@ -3,66 +3,115 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using ClasesAlicanTeam.CAD;
+using System.Data;
 
 
 namespace ClasesAlicanTeam.EN
 {
     public class ENDistributor : ENBusiness
-    {
-        private CADDistributor cadDistributor;
+    { 
+        private int idBusiness;
 
+        #region//Getters & Setters
 
-        public ENDistributor() : base()
+        /// <summary>
+        /// Devuelve y establece el idDistributor del distribuidor.
+        /// </summary>
+        public int IdBusiness
         {
-            cadDistributor = new CADDistributor();
-        }
-
-        public ENDistributor(String cif, String name, String address, int telephone, String email)
-            : base(cif,name,address,telephone,email)
-        {
-            
-            cadDistributor = new CADDistributor();
-        }
-
-        public ENDistributor(ENDistributor distributor)
-            : base(distributor.cif, distributor.Name,distributor.Address,distributor.Telephone,distributor.Email)
-        {
-                
-                cadDistributor = new CADDistributor();
-        }
-
-        public Boolean insert()
-        {
-            try
+            get
             {
-
-                return cadBusiness.insert(this) && cadDistributor.insert(this);
+                return this.idBusiness;
             }
-            catch (Exception ex)
+            set
             {
-                throw ex;
+                this.idBusiness = value;
             }
         }
 
-        public Boolean update()
+        #endregion
+
+        #region//Private Methods
+
+        protected override DataRow ToDataRow
         {
-            return cadBusiness.update(this);
+            get
+            {
+                DataRow ret = cad.GetVoidRow;
+                ret["ID"] = this.idBusiness;
+                ret["idBusiness"] = this.idBusiness;
+                return ret;
+            }
         }
 
-        public Boolean delete()
+        protected override void FromRow(DataRow Row)
         {
-            return cadDistributor.delete(this) && cadBusiness.delete(this);
+            ENBusiness b = base.Read((int)Row["idBusiness"]);
+            this.idBusiness = b.Id;
+            this.Cif = b.Cif;
+            this.Name = b.Name;
+            this.Address = b.Address;
+            this.Telephone = b.Telephone;
+            this.Email = b.Email;
+            this.IdBusiness = (int)Row["idBusiness"];
         }
 
-        public ENDistributor read(String cif)
+        #endregion
+
+        #region//Public Methods
+
+        /// <summary>
+        /// Constructor por defecto que inicializa el objeto con sus campos vacíos.
+        /// </summary>
+        public ENDistributor()
+            : base()
         {
-            return cadDistributor.read(cif);
+            cad = new CADDistributor();
+            idBusiness = 0;
         }
 
-        public IList<ENDistributor> readAll()
+        /// <summary>
+        /// Constructor sobrecargado que inicializa el objeto con los datos pasado por parámetro.
+        /// </summary>
+        /// <param name="idBusiness">Identificador de la clase ENBusiness padre del distribuidor.</param>
+        public ENDistributor(int idBusiness)
+            : base()
         {
-            return cadDistributor.readAll();
+            cad = new CADDistributor();
+            this.IdBusiness = idBusiness;
         }
 
+        /// <summary>
+        /// Busca el distribuidor en la base de datos y lo devuelve
+        /// </summary>
+        /// <param name="id">Identificador del distribuidor a buscar.</param>
+        /// <returns>ENDistributor del distribuidor encontrado en la base de datos.</returns>
+        public ENDistributor Read(int id)
+        {
+            ENDistributor ret = new ENDistributor();
+            List<object> param = new List<object>();
+            param.Add((object)id);
+            ret.FromRow(cad.Select(param));
+            return ret;
+        }
+
+        /// <summary>
+        /// Devuelve todos los distribuidores nuevos que existen en la base de datos.
+        /// </summary>
+        /// <returns>Lista de ENDistributor con todos los distribuidores de la base de datos.</returns>
+        public List<ENDistributor> ReadAll()
+        {
+            List<ENDistributor> ret = new List<ENDistributor>();
+            DataTable tabla = cad.SelectAll();
+            foreach (DataRow rows in tabla.Rows)
+            {
+                ENDistributor nuevo = new ENDistributor();
+                nuevo.FromRow(rows);
+                ret.Add(nuevo);
+            }
+            return ret;
+        }
+
+        #endregion
     }
 }

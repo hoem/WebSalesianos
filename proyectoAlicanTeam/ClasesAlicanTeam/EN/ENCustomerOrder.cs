@@ -3,17 +3,19 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Data;
 
 namespace ClasesAlicanTeam.EN
 {
-    public class ENCustomerOrder
+    public class ENCustomerOrder : AEN
     {
         private int cOrder;
-        private ENCustomer customer;
+        private int idCustomer;
         private DateTime dataOrder;
-        private List<ENLineCustomerOrder> linescustomerorder;
+        private ENLineCustomerOrder line;
+        private char status;
         private float total;
-        CADCustomerOrder cad;
+        private List<ENLineCustomerOrder> lines;
 
         #region
         /// <summary>
@@ -28,10 +30,10 @@ namespace ClasesAlicanTeam.EN
         /// <summary>
         /// Devuelve y establece el ENCustormer del Pedido.
         /// </summary>
-        public ENCustomer Customer
+        public int Customer
         {
-            get { return customer; }
-            set { customer = value; }
+            get { return idCustomer; }
+            set { idCustomer = value; }
         }
 
         /// <summary>
@@ -48,16 +50,44 @@ namespace ClasesAlicanTeam.EN
         /// </summary>
         public List<ENLineCustomerOrder> Linecustomerorder
         {
-            get { return linescustomerorder; }
+            get { return line.Filter("Corder = " + id); }
+        }
+
+        public float Total
+        {
+            get
+            {
+
+                float total = 0;
+
+                foreach (ENLineCustomerOrder l in lines)
+                {
+
+                    total += l.Total;
+                }
+
+                return total;
+
+            }
+
         }
 
         /// <summary>
         /// Devuelve el total del precio del pedido.
         /// </summary>
-        public float Total
+        /*public float Total
         {
-            get { return total; }
-        }
+            get 
+            {
+                total = 0;
+                List<ENLineCustomerOrder> lineas = Linecustomerorder;
+                    foreach(ENLineCustomerOrder lin in lineas)
+                    {
+                        total += lin.Total;
+                    }
+                return total; 
+            }
+        }*/
         #endregion
 
         /// <summary>
@@ -65,8 +95,13 @@ namespace ClasesAlicanTeam.EN
         /// </summary>
         public ENCustomerOrder()
         {
+            id = 0;
             total = 0;
+            status = 'P';
+            line = new ENLineCustomerOrder();
             cad = new CADCustomerOrder();
+            total = 0;
+            lines = new List<ENLineCustomerOrder>();
         }
 
         /// <summary>
@@ -75,31 +110,62 @@ namespace ClasesAlicanTeam.EN
         /// <param name="cOrder">Identificador del pedido.</param>
         /// <param name="customer">ENCustomer que realiza el pedido.</param>
         /// <param name="DataOrder">Fecha en la que se realiza el pedido.</param>
-        public ENCustomerOrder(int cOrder, ENCustomer customer, DateTime DataOrder)
+        public ENCustomerOrder(int cOrder, int customer, DateTime DataOrder, char status)
         {
+            id = 0;
             this.cOrder = cOrder;
-            this.customer = customer;
+            this.idCustomer = customer;
             this.dataOrder = DataOrder;
             this.total = 0;
-            linescustomerorder = new List<ENLineCustomerOrder>();
+            this.status = status;
+            line = new ENLineCustomerOrder();
             cad = new CADCustomerOrder();
+            total = 0;
+            lines = new List<ENLineCustomerOrder>();
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="line"></param>
-        public void addLineCustomerOrder(ENLineCustomerOrder line)
+   
+
+
+        protected override DataRow ToDataRow
         {
-            this.linescustomerorder.Add(line);
-            // -> hacer la suma del total + el precio del librototal+= line.
+            get 
+            {
+                DataRow ret = cad.GetVoidRow;
+                ret["id"] = this.id;
+	            ret["idCustomers"] = idCustomer;
+	            ret["DataOrder"] = dataOrder;
+                ret["Status"] = status;
+                return ret;
+            }
         }
 
-        public Boolean insert()
+        protected override void FromRow(DataRow Row)
+        {
+            this.id = (int)Row["id"];
+            idCustomer = (int)Row["idCustomers"];
+            dataOrder = (DateTime)Row["DataOrder"];
+            status = (char)Row["Status"];
+            
+        }
+
+        public List<ENLineCustomerOrder> Lines
+        {
+            get { return line.Filter("COrder = " + id); }
+
+            set { lines = value; }
+
+        }
+
+        public override void Delete()
         {
             try
             {
-                return cad.insert(this);
+                foreach (ENLineCustomerOrder l in Lines)
+                {
+                    l.Delete();
+                }
+                cad.Delete(ToDataRow);
             }
             catch (Exception ex)
             {
@@ -107,17 +173,30 @@ namespace ClasesAlicanTeam.EN
             }
         }
 
-        public Boolean update()
+        public override void Save()
         {
-            return false;
-        }
-
-        public Boolean delete()
-        {
-
             try
             {
-                return cad.delete(this);
+                if (this.id == 0)
+                {
+                    id = cad.Insert(ToDataRow);
+                    foreach (ENLineCustomerOrder l in lines)
+                    {
+                        l.IdcustomerOrder = id;
+                        l.Save();
+                    }
+                }
+                else
+                {
+                    cad.Update(ToDataRow);
+
+                    Lines = Lines;
+                    foreach (ENLineCustomerOrder l in lines)
+                    {
+                        l.IdcustomerOrder = id;
+                        l.Save();
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -125,5 +204,80 @@ namespace ClasesAlicanTeam.EN
             }
         }
 
+        public ENCustomerOrder Read(int id)
+        {
+            try
+            {
+                ENCustomerOrder ret = new ENCustomerOrder();
+
+                List<object> param = new List<object>();
+                param.Add((object)id);
+
+                ret.FromRow(cad.Select(param));
+
+                Lines = ret.Lines;
+
+                return ret;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public List<ENCustomerOrder> ReadAll()
+        {
+            List<ENCustomerOrder> ret = new List<ENCustomerOrder>();
+            DataTable table = cad.SelectAll();
+
+            try
+            {
+
+                foreach (DataRow row in table.Rows)
+                {
+                    ENCustomerOrder co = new ENCustomerOrder();
+                    co.FromRow(row);
+                    co.Lines = co.Lines;
+                    ret.Add(co);
+
+                }
+                return ret;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public List<ENCustomerOrder> Filter(String where)
+        {
+            List<ENCustomerOrder> ret = new List<ENCustomerOrder>();
+            DataTable table = cad.SelectWhere(where);
+
+            try
+            {
+
+                foreach (DataRow row in table.Rows)
+                {
+                    ENCustomerOrder co = new ENCustomerOrder();
+                    co.FromRow(row);
+                    co.Lines = co.Lines;
+                    ret.Add(co);
+
+                }
+                return ret;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public void AddLine(ENNewBook book, int quantity)
+        {
+            ENLineCustomerOrder line = new ENLineCustomerOrder(0, this.id, book, quantity);
+            lines.Add(line);
+
+        }
     }
 }

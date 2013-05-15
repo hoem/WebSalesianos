@@ -3,14 +3,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Data;
 
 namespace ClasesAlicanTeam.EN
 {
-    public class ENLineCustomerOrder
+    public class ENLineCustomerOrder : AEN
     {
         private int idLines_Customers;
-        private ENCustomerOrder customerOrder;
-        private ENNew newBook;
+        private int idCustomerOrder;
+        private ENNewBook newBook;
         private int quantity;
         private float total;
         private CADLineCustomerOrder cad;
@@ -21,13 +22,13 @@ namespace ClasesAlicanTeam.EN
             set { idLines_Customers = value; }
         }
 
-        public ENCustomerOrder CustomerOrder
+        public int IdcustomerOrder
         {
-            get { return customerOrder; }
-            set { customerOrder = value; }
+            get { return idCustomerOrder; }
+            set { idCustomerOrder = value; }
         }
 
-        public ENNew NewBook
+        public ENNewBook NewBook
         {
             get { return newBook; }
             set { newBook = value; }
@@ -41,29 +42,68 @@ namespace ClasesAlicanTeam.EN
 
         public float Total
         {
-            get { // catidad * precio del libro
-                    return total; }
+            get { return quantity*newBook.Price; }
         }
 
         public ENLineCustomerOrder()
         {
+            id = 0;
+            idLines_Customers = 1;
+            idCustomerOrder = 0;
+            newBook = new ENNewBook();
+            total = 0;
             cad = new CADLineCustomerOrder();
         }
 
-        public ENLineCustomerOrder(int idLines_Customers, ENCustomerOrder customerOrder, ENNew newBook, int quantity)
+        public ENLineCustomerOrder(int idLines_Customers, int customerOrder, ENNewBook newBook, int quantity)
         {
             this.idLines_Customers = idLines_Customers;
-            this.customerOrder = customerOrder;
+            this.idCustomerOrder = customerOrder;
             this.newBook = newBook;
             this.quantity = quantity;
+            this.total = quantity * newBook.Price;
             cad = new CADLineCustomerOrder();
         }
 
-        public Boolean insert()
+
+        protected override DataRow ToDataRow
+        {
+            get
+            {
+                DataRow ret = cad.GetVoidRow;
+                ret["id"] = this.id;
+                ret["idLines_Customers"] = idLines_Customers;
+	            ret["COrder"] = idCustomerOrder;
+	            ret["idNews"] = newBook.Id;
+                ret["Quantity"] = quantity;
+                
+                
+                return ret;
+            }
+        }
+
+        protected override void FromRow(DataRow Row)
+        {
+            this.id = (int) Row["id"];
+            idLines_Customers = (int) Row["idLines_Customers"];
+            idCustomerOrder = (int)    Row["COrder"];
+            newBook = newBook.Read( (int)Row["idNews"]);
+            quantity = (int)  Row["Quantity"];
+        }
+
+        public override void Save()
         {
             try
             {
-                return cad.insert(this);
+
+                if (id == 0)
+                {
+                    id = cad.Insert(ToDataRow);
+                }
+                else
+                {
+                    cad.Update(ToDataRow);
+                }
             }
             catch (Exception ex)
             {
@@ -71,17 +111,73 @@ namespace ClasesAlicanTeam.EN
             }
         }
 
-        public Boolean update()
+        public override void Delete()
         {
-            return false;
+            try
+            {
+                cad.Delete(ToDataRow);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            
         }
 
-        public Boolean delete()
+        public List<ENLineCustomerOrder> ReadAll()
         {
+            List<ENLineCustomerOrder> ret = new List<ENLineCustomerOrder>();
+            DataTable table = cad.SelectAll();
 
             try
             {
-                return cad.delete(this);
+                foreach (DataRow row in table.Rows)
+                {
+                    ENLineCustomerOrder line = new ENLineCustomerOrder();
+                    line.FromRow(row);
+                    ret.Add(line);
+                }
+
+                return ret;
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public ENLineCustomerOrder Read(int id)
+        {
+            ENLineCustomerOrder ret = new ENLineCustomerOrder();
+            List<object> param = new List<object>();
+            param.Add((object)id);
+            try
+            {
+                ret.FromRow(cad.Select(param));
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            
+            return ret;
+        }
+
+        public List<ENLineCustomerOrder> Filter(String where)
+        {
+            List<ENLineCustomerOrder> ret = new List<ENLineCustomerOrder>();
+            DataTable table = cad.SelectWhere(where);
+
+            try
+            {
+                foreach (DataRow row in table.Rows)
+                {
+                    ENLineCustomerOrder line = new ENLineCustomerOrder();
+                    line.FromRow(row);
+                    ret.Add(line);
+                }
+
+                return ret;
             }
             catch (Exception ex)
             {

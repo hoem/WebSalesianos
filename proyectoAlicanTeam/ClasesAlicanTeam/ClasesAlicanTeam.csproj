@@ -12,6 +12,21 @@
     <AssemblyName>ClasesAlicanTeam</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -42,8 +57,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CAD\CADAdministrator.cs" />
+    <Compile Include="CAD\CADAdvertiements_Has_UBooks.cs" />
     <Compile Include="CAD\CADAdvertisement.cs" />
     <Compile Include="CAD\CADAlarm.cs" />
+    <Compile Include="CAD\CADAlarms_Has_Customers.cs" />
     <Compile Include="CAD\CADBook.cs" />
     <Compile Include="CAD\CADBusiness.cs" />
     <Compile Include="CAD\CADCourse.cs" />
@@ -51,18 +68,19 @@
     <Compile Include="CAD\CADCustomerOrder.cs" />
     <Compile Include="CAD\CADDistributor.cs" />
     <Compile Include="CAD\CADLineCustomerOrder.cs" />
-    <Compile Include="CAD\CADLinePublishingOrder.cs" />
-    <Compile Include="CAD\CADNew.cs" />
+    <Compile Include="CAD\CADLineDistributorsOrder.cs" />
+    <Compile Include="CAD\CADNewBook.cs" />
     <Compile Include="CAD\CADObligatorySubject.cs" />
     <Compile Include="CAD\CADOptionalSubject.cs" />
     <Compile Include="CAD\CADPublisher.cs" />
-    <Compile Include="CAD\CADPublishingOrder.cs" />
+    <Compile Include="CAD\CADDistributorsOrder.cs" />
     <Compile Include="CAD\CADSubject.cs" />
     <Compile Include="CAD\CADUsedBook.cs" />
     <Compile Include="CAD\CADUser.cs" />
     <Compile Include="CAD\CADYear.cs" />
     <Compile Include="CAD\CADYearsHasBooks.cs" />
     <Compile Include="CAD\ICAD.cs" />
+    <Compile Include="EN\AEN.cs" />
     <Compile Include="EN\ENAdministrator.cs" />
     <Compile Include="EN\ENAdvertisement.cs" />
     <Compile Include="EN\ENAlarm.cs" />
@@ -73,18 +91,40 @@
     <Compile Include="EN\ENCustomerOrder.cs" />
     <Compile Include="EN\ENDistributor.cs" />
     <Compile Include="EN\ENLineCustomerOrder.cs" />
-    <Compile Include="EN\ENLinePublishingOrder.cs" />
-    <Compile Include="EN\ENNew.cs" />
+    <Compile Include="EN\ENLineDistributorsOrder.cs" />
+    <Compile Include="EN\ENNewBook.cs" />
     <Compile Include="EN\ENObligatorySubject.cs" />
     <Compile Include="EN\ENOptionalSubject.cs" />
     <Compile Include="EN\ENPublisher.cs" />
-    <Compile Include="EN\ENPublishingOrder.cs" />
+    <Compile Include="EN\ENDistributorsOrder.cs" />
     <Compile Include="EN\ENSubject.cs" />
     <Compile Include="EN\ENUsedBook.cs" />
     <Compile Include="EN\ENUser.cs" />
     <Compile Include="EN\ENYear.cs" />
     <Compile Include="EN\ENYearHasBooks.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.4.5">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 4.5</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

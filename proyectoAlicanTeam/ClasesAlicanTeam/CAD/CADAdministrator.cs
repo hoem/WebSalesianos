@@ -5,7 +5,12 @@ using System.Text;
 
 namespace ClasesAlicanTeam.CAD
 {
-    public class CADAdministrator
+    public class CADAdministrator : ICAD
     {
+        public CADAdministrator()
+            : base()
+        {
+            this.tablename = "Administrators";
+        }
     }
 }
