@@ -58,6 +58,17 @@ namespace ClasesAlicanTeam.EN
             }
         }
 
+        public int SubjectId
+        {
+            get
+            {
+                return this.Subject.Id;
+            }
+            set
+            {
+                this.Subject = this.Subject.Read(value);
+            }
+        }
         /// <summary>
         /// Devuelve y establece el Bussinesss del libro.
         /// </summary>
@@ -76,6 +87,18 @@ namespace ClasesAlicanTeam.EN
             set
             {
                 this.business = value;
+            }
+        }
+
+        public int BusinessId
+        {
+            get
+            {
+                return this.Bussiness.Id;
+            }
+            set
+            {
+                this.Bussiness = this.Bussiness.Read(value);
             }
         }
 

@@ -13,6 +13,7 @@ namespace TestCAD
             var newBook = new ENNewBook();
             newBook = newBook.Read(1);
             var price = newBook.Price;
+            //used to fail casting
         }
     }
 }

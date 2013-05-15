@@ -20,11 +20,20 @@
                 deleteAction: '/Administration/BookDelete'
             },
             fields: {
-                IdBook: {
+                ID: {
                     key: true,
                     create: false,
                     edit: false,
                     list: false
+                },
+                IdBook: {
+                    title: 'ISBN/EAN13'
+                },
+                SubjectId: {
+                    title: 'Asignatura'
+                },
+                BusinessId: {
+                    title: 'Editorial'
                 },
                 Name: {
                     title: 'Nombre'

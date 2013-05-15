@@ -49,11 +49,12 @@ namespace LibrosSalesianos.Controllers
             }
         }
 
-        public JsonResult BookCreate()
+        public JsonResult BookCreate(ENBook newBook)
         {
             try
             {
-                throw new NotImplementedException();
+                newBook.Save();
+                return Json(new { Result = "OK", Record = newBook });
             }
             catch (Exception ex)
             {
