@@ -1,4 +1,4 @@
-﻿@model ClasesAlicanTeam.EN.ENUsedBook
+﻿@model ClasesAlicanTeam.EN.ENNewBook
 @{
     ViewBag.Title = "_BookPartial";
     var book = Model;
@@ -9,7 +9,7 @@
         <tbody>
             <tr>
                 <td>
-                    <a><img src ="@book.Picture" /></a>
+                    <a><img style="height:150px" src="@book.Picture" /></a>
                 </td>
                 <td rowspan="2">
                     <div> @Html.Label("desc",book.Description) </div>

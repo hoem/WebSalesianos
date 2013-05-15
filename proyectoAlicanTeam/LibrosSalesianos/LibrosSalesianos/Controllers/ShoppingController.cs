@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using LibrosSalesianos.Models;
+using ClasesAlicanTeam.EN;
 
 namespace LibrosSalesianos.Controllers
 {
@@ -60,6 +61,9 @@ namespace LibrosSalesianos.Controllers
 
         public ActionResult BuyingBooks()
         {
+            var book = new ENNewBook();
+            var books = book.ReadAll();
+            /*
             var book = new Book("012345", "Mi bonico libro daprender", 99.01f, "/Scripts/widgets/jqwidgets/images/books/Carrie.jpg");
             var book1 = new Book("012346", "Sueños rallantes", 34.29f, "/Scripts/widgets/jqwidgets/images/inception.jpg");
             var book2 = new Book("012347", "El oso peleon", 1.10f, "/Scripts/widgets/jqwidgets/images/kungfupanda.png");
@@ -68,7 +72,7 @@ namespace LibrosSalesianos.Controllers
             books.Add(book);
             books.Add(book1);
             books.Add(book2);
-            books.Add(book3);
+            books.Add(book3);*/
             return View("BuyingBooks", books);
         }
 
