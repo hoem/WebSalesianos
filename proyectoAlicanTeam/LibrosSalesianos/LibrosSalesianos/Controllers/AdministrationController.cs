@@ -62,11 +62,12 @@ namespace LibrosSalesianos.Controllers
             }
         }
 
-        public JsonResult BookUpdate()
+        public JsonResult BookUpdate(ENBook updatedBook)
         {
             try
             {
-                throw new NotImplementedException();
+                updatedBook.Save();
+                return Json(new { Result = "OK", Record = updatedBook });
             }
             catch (Exception ex)
             {
@@ -74,11 +75,12 @@ namespace LibrosSalesianos.Controllers
             }
         }
 
-        public JsonResult BookDelete()
+        public JsonResult BookDelete(int bookID)
         {
             try
             {
-                throw new NotImplementedException();
+                (new ENBook()).Read(bookID).Delete();
+                return Json(new { Result = "OK" });
             }
             catch (Exception ex)
             {
@@ -86,5 +88,32 @@ namespace LibrosSalesianos.Controllers
             }
         }
 
+        public JsonResult BookSubjectOptions()
+        {
+            try
+            {
+                var subjectList = (new ENSubject()).ReadAll();
+                var subjects = subjectList.Select(c => new { DisplayText = c.Name + " " + c.Course.Courses, Value = c.Id });
+                return Json(new { Result = "OK", Options = subjects });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { Result = "ERROR", Message = ex.Message });
+            }
+        }
+
+        public JsonResult BookPublisherOptions()
+        {
+            try
+            {
+                var publishersList = (new ENPublisher()).ReadAll();
+                var publisher = publishersList.Select(c => new { DisplayText = c.Name, Value = c.IdBusiness });
+                return Json(new { Result = "OK", Options = publisher });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { Result = "ERROR", Message = ex.Message });
+            }
+        }
     }
 }

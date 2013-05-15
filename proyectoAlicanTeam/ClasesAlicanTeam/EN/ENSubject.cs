@@ -122,8 +122,6 @@ namespace ClasesAlicanTeam.EN
 
         public ENSubject Read(int idSubject)
         {
-            try
-            {
                 ENSubject ret = new ENSubject();
 
                 List<object> param = new List<object>();
@@ -132,11 +130,6 @@ namespace ClasesAlicanTeam.EN
                 ret.FromRow(cad.Select(param));
 
                 return ret;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
         }
 
         public List<ENSubject> Filter(string where)

@@ -30,10 +30,12 @@
                     title: 'ISBN/EAN13'
                 },
                 SubjectId: {
-                    title: 'Asignatura'
+                    title: 'Asignatura',
+                    options: '/Administration/BookSubjectOptions'
                 },
                 BusinessId: {
-                    title: 'Editorial'
+                    title: 'Editorial',
+                    options: '/Administration/BookPublisherOptions'
                 },
                 Name: {
                     title: 'Nombre'
@@ -46,16 +48,6 @@
                 }
             }
         });
-        /*
-        private string idBook;
-        private ENSubject subject;
-        private int subjectToLoad;
-        private int businessToLoad;
-        private ENBusiness business;
-        private string name;
-        private string description;
-        private string picture;
-        */
         $('#tableBooks').jtable('load');
     });
 </script>
