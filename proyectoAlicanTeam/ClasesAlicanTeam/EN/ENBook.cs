@@ -43,9 +43,9 @@ namespace ClasesAlicanTeam.EN
         {
             get
             {
-                if (subjectToLoad != -1)
+                if (this.subject == null)
                 {
-                    subject = subject.Read(subjectToLoad);
+                    subject = (new ENSubject()).Read(subjectToLoad);
                     subjectToLoad = -1;
                 }
 
@@ -65,9 +65,9 @@ namespace ClasesAlicanTeam.EN
         {
             get
             {
-                if (businessToLoad != -1)
+                if (this.business == null)
                 {
-                    business = business.Read(businessToLoad);
+                    business = (new ENBusiness()).Read(businessToLoad);
                     businessToLoad = -1;
                 }
 
@@ -136,22 +136,22 @@ namespace ClasesAlicanTeam.EN
                 ret["ID"] = this.id;
                 ret["idBooks"] = this.idBook;
 
-                if (subjectToLoad != -1)
+                if (this.subject == null)
+                {
+                    ret["idSubject"] = subjectToLoad;
+                }
+                else
                 {
                     ret["idSubject"] = this.subject.Id;
                 }
-                else
-                {
-                    ret["idSubject"] = this.subjectToLoad;
-                }
 
-                if (businessToLoad != -1)
+                if (this.business == null)
                 {
-                    ret["iDBusiness"] = this.business.Id;
+                    ret["iDBusiness"] = businessToLoad;
                 }
                 else
                 {
-                    ret["idBusiness"] = this.businessToLoad;
+                    ret["idBusiness"] = this.business.Id;
                 }
                 ret["Name"] = this.name;
                 ret["Description"] = this.description;
@@ -183,8 +183,8 @@ namespace ClasesAlicanTeam.EN
             cad = new CADBook();
             id = 0;
             idBook = "";
-            subject = new ENSubject();
-            business = new ENBusiness();
+            subject = null;
+            business = null;
             name = "";
             description = "";
             picture = "";

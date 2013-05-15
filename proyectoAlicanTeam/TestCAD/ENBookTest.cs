@@ -33,11 +33,12 @@ namespace TestCAD
             var testSubject = new ENSubject();
             testSubject = testSubject.Read(1);
             book.Subject = testSubject;
+            book.Bussiness = (new ENBusiness()).Read(1);
             book.Save();
             var bookList = book.ReadAll();
             var actual = bookList[bookList.Count - 1];
             actual.Delete();
-            Assert.AreEqual("testInsertId", actual.IdBook);
+            Assert.AreEqual("testInsertID", actual.IdBook);
         }
 
         [TestMethod]
@@ -48,8 +49,7 @@ namespace TestCAD
             var oldName = book.Name;
             book.Name = "testUpdateName";
             book.Save();
-            var bookList = book.ReadAll();
-            var actual = bookList[bookList.Count - 1];
+            var actual = book.Read(1);
             var actualName = actual.Name;
             actual.Name = oldName;
             actual.Save();
