@@ -67,7 +67,7 @@ namespace LibrosSalesianos.Controllers
             try
             {
                 updatedBook.Save();
-                return Json(new { Result = "OK", Record = updatedBook });
+                return Json(new { Result = "OK" });
             }
             catch (Exception ex)
             {
@@ -75,11 +75,11 @@ namespace LibrosSalesianos.Controllers
             }
         }
 
-        public JsonResult BookDelete(int bookID)
+        public JsonResult BookDelete(int Id)
         {
             try
             {
-                (new ENBook()).Read(bookID).Delete();
+                (new ENBook()).Read(Id).Delete();
                 return Json(new { Result = "OK" });
             }
             catch (Exception ex)
