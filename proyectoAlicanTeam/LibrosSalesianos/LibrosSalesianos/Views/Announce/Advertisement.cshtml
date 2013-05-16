@@ -1,6 +1,7 @@
 ﻿@using ClasesAlicanTeam.EN;
 @{
     ViewBag.Title = "Advertisement";
+    List<ENAdvertisement> ads = new ENAdvertisement().ReadAll();
 }
 
  @Scripts.Render("~/Scripts/widgets/jqwidgets/jqxlistmenu.js")
@@ -18,6 +19,20 @@
 
 <div  style="margin-left: 19%">
 <ul id="list" data-role="listmenu">
+    @foreach (ENAdvertisement ad in ads)
+    {
+        if (ad.Books.Count != 0)
+        {
+            <li>
+                @ad.Description
+                <ul data-role="listmenu">
+                    <di>
+                        @{var book1 = ad.Books[0];}
+                        @Html.Partial("_UsedBookPartial", book1)
+                    </di>
+                </ul>
+            </li>}
+    }
 @*        <li>Mates
             <ul data-role="listmenu">
                 <div>

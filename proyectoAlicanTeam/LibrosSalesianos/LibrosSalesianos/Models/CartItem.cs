@@ -38,11 +38,14 @@ namespace LibrosSalesianos.Models
             get { return UnitPrice * Quantity; }
         }
 
+        public int Id { get; set; }
+
         #endregion
 
         public CartItem(ENNewBook book)
         {
             this.Book = book;
+            this.Id = book.Id;
             this.Quantity = 1;
         }
 

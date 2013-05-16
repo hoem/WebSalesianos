@@ -36,10 +36,11 @@ namespace LibrosSalesianos.Controllers
             return Content("true");
         }
 
-        public ActionResult RemoveFromCart(int id)
+        public ActionResult RemoveFromCart(ENNewBook newbook)
         {
-            var book = new ENNewBook(id);
-            ShoppingCart.Instance.RemoveItem(book);
+            var book = new ENNewBook();
+            var nbook = book.Read(newbook.Id);
+            ShoppingCart.Instance.RemoveItem(nbook);
             return RedirectToAction("Cart");
         }
 

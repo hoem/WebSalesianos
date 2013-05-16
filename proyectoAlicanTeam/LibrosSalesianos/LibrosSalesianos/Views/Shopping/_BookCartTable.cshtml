@@ -9,7 +9,7 @@
         <tr>
             <td class="thumb">
                 <a href="#">
-                    <img src="@item.Image" title="@item.Description"/>
+                    <img style="height:150px" src="@item.Image" title="@item.Description"/>
                 </a>
             </td>
             <td class="description">
@@ -45,7 +45,7 @@
             <td class="subtotal" id="Subtotal-@item.BookIsbn">@item.TotalPrice.ToString("C")</td>
             <td class="remove">
                 <div class="linkbutton">
-                    @Html.ActionLink("Remove", "RemoveFromCart", new { controller = "Shopping", isbn = @item.BookIsbn }, new { @class = "removecart" })
+                    @Html.ActionLink("Remove", "RemoveFromCart", new { controller = "Shopping", isbn = @item.Book }, new { @class = "removecart" })
                 </div>
             </td>
         </tr>
