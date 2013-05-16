@@ -1,0 +1,49 @@
+﻿@{
+    ViewBag.Title = "TableDistributorsOrders";
+}
+
+<h2>Table DistributorsOrders</h2>
+
+<div id="tableDistributorsOrders"></div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#tableDistributorsOrders').jtable({
+            title: 'General Books',
+            paging: false, //Enable paging
+            //pageSize: 10, //Set page size (default: 10)
+            sorting: false, //Enable sorting
+            //defaultSorting: 'Name ASC', //Set default sorting
+            actions: {
+                listAction: '/Administration/DistributorOrderList',
+                createAction: '/Administration/DistributorOrderCreate',
+                updateAction: '/Administration/DistributorOrderUpdate',
+                deleteAction: '/Administration/DistributorOrderDelete'
+            },
+            fields: {
+                Id: {
+                    key: true,
+                    create: false,
+                    edit: false,
+                    list: false
+                },
+                DataOrder: {
+                    title: 'Fecha',
+                    type: 'date'
+                },
+                Distributor: {
+                    title: 'Distribuidor',
+                    options: '/Administration/DistributorOptions'
+                },
+                Status: {
+                    title: 'Estado',
+                    options: { 'P': 'Pendiente', 'C': 'Completado' }
+                },
+                Total: {
+                    title: 'Total'
+                }
+            }
+        });
+        $('#tableDistributorsOrders').jtable('load');
+    });
+</script>
+</div>

@@ -118,7 +118,7 @@ namespace ClasesAlicanTeam.EN
             Id = (int)Row["ID"];
             distributor = (int)Row["idDistributor"];
             dataOrder = (DateTime)Row["DataOrder"];
-            status = (char)Row["status"];
+            status = ((string)Row["status"])[0];
         }
 
 

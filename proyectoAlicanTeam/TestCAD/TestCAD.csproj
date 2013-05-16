@@ -58,7 +58,6 @@
     <Compile Include="ENAdvertisementTest.cs" />
     <Compile Include="ENNewBookTest.cs" />
     <Compile Include="ENSubjectTest.cs" />
-    <Compile Include="ENOptionalSubjectTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ClasesAlicanTeam\ClasesAlicanTeam.csproj">

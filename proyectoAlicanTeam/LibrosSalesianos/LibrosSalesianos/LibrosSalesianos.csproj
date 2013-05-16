@@ -924,6 +924,7 @@
     <Content Include="Views\Announce\AnnounceForm.cshtml" />
     <Content Include="Views\Shared\_NewBookPartial.cshtml" />
     <Content Include="Views\Shared\_UsedBookPartial.cshtml" />
+    <Content Include="Views\Administration\TableDistributorsOrders.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />
