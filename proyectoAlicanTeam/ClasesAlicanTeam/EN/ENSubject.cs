@@ -70,7 +70,8 @@ namespace ClasesAlicanTeam.EN
             {
                 if (this.id == 0)
                 {
-                    return id = cad.Insert(ToDataRow);
+                    DataRow data = ToDataRow;
+                    return id = cad.Insert(data);
                 }
                 else
                 {
