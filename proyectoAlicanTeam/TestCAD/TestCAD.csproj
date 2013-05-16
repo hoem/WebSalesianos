@@ -58,6 +58,7 @@
     <Compile Include="ENAdvertisementTest.cs" />
     <Compile Include="ENNewBookTest.cs" />
     <Compile Include="ENSubjectTest.cs" />
+    <Compile Include="ENOptionalSubjectTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ClasesAlicanTeam\ClasesAlicanTeam.csproj">
@@ -66,9 +67,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config">
-      <SubType>Designer</SubType>
-    </None>
+    <None Include="app.config" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
