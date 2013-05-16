@@ -281,12 +281,14 @@
     <Content Include="Images\Filosofia-3.jpg" />
     <Content Include="Images\imageNature7.jpg" />
     <Content Include="Images\portada kiwi.jpg" />
+    <Content Include="jquery.jtable.js" />
+    <Content Include="jquery.jtable.min.js" />
     <Content Include="Scripts\jquery-1.7.1.js" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-ui-1.8.20.js" />
     <Content Include="Scripts\jquery-ui-1.8.20.min.js" />
-    <Content Include="Scripts\jquery.jtable.js" />
+    <Content Include="Scripts\widgets\jquery.jtable.js" />
     <Content Include="Scripts\jquery.jtable.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
