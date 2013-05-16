@@ -7,11 +7,13 @@
     
 @*@Scripts.Render("~/Scripts/jtable/jquery.jtable.js")*@
 
-<h2>Bienvenido Administrador!</h2>
+<h3>Bienvenido Administrador!</h3>
 
-<nav id="navAdmin">
-    @Ajax.ActionLink("Books","TableBooks","Administration",new AjaxOptions{UpdateTargetId = "tableContainer"})
-    @Ajax.ActionLink("Distributors Orders","TableDistributorsOrders","Administration",new AjaxOptions{UpdateTargetId = "tableContainer"})
+<nav id="navAdmin" style="margin-left:19%">
+    <ul>
+        <li>@Ajax.ActionLink("Books","TableBooks","Administration",new AjaxOptions{UpdateTargetId = "tableContainer"})</li>
+        <li>@Ajax.ActionLink("Distributors Orders","TableDistributorsOrders","Administration",new AjaxOptions{UpdateTargetId = "tableContainer"})</li>
+    </ul>
 </nav>
 
 <div id="tableContainer"></div>

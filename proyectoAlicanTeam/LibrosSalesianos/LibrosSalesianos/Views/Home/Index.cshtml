@@ -4,6 +4,12 @@
     ViewBag.Title = "Página principal";
     List<ENAdvertisement> ads = new ENAdvertisement().ReadAll();
 }
+
+@Scripts.Render("~/Scripts/widgets/jqwidgets/jqxlistmenu.js")
+ @Scripts.Render("~/Scripts/widgets/jqwidgets/jqxpanel.js")
+ @Scripts.Render("~/Scripts/widgets/jqwidgets/jqxscrollbar.js")
+ @Scripts.Render("~/Scripts/widgets/jqwidgets/jqxbuttons.js")
+
 @section featured {
 
     @*@Scripts.Render("~/Scripts/LoadGarrely.js")*@
@@ -36,16 +42,31 @@
         
         <h3>@Html.Label("Ultimos Anuncios")</h3>
 
-        <div id='jqxnavigationbar' style =" margin-left:19%">
-            @foreach(ENAdvertisement ad in ads){
-                if(ad.Books.Count != 0)
-                {
-            <div> @ad.Description</div>
-                <div> 
-                    @{var book1 = ad.Books[0];}
-                    @Html.Partial("_UsedBookPartial", book1)
-                </div>}}
-        </div>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#list').jqxListMenu({ width: 700, enableScrolling: false, showHeader: true, showBackButton: true, showFilter: false, theme: 'custom' });
+            });
+    </script>
+
+       <div  style="margin-left: 19%">
+<ul id="list" data-role="listmenu">
+    @foreach (ENAdvertisement ad in ads)
+    {
+        if (ad.Books.Count != 0)
+        {
+            <li>
+                @ad.Description
+                <ul data-role="listmenu">
+                    <di>
+                        @{var book1 = ad.Books[0];}
+                        @Html.Partial("_UsedBookPartial", book1)
+                    </di>
+                </ul>
+            </li>}
+    }
+@*   
+</ul>
+    </div>
     @*<div class="calendario">*@
        @*<div id='jqxcalendar'></div>*@
     @*</div>*@
