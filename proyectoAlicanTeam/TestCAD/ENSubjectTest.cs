@@ -23,7 +23,7 @@ namespace TestCAD
             var course = new ENCourse();
             var subject = new ENSubject();
             subject.Name = "nameTest";
-            subject.Course = (new ENCourse()).Read(1);
+            subject.Course = course.Read(1);
             subject.Save();
             var subjects = subject.ReadAll();
             var actual = subjects[subjects.Count - 1];

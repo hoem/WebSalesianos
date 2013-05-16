@@ -29,18 +29,6 @@ namespace ClasesAlicanTeam.EN
             }
         }
 
-        public int IdCourse
-        {
-            get
-            {
-                return base.Course.Id;
-            }
-            set
-            {
-                base.Course.Id = value;
-            }
-        }
-
         #endregion
 
         #region//Private Methods
@@ -58,8 +46,7 @@ namespace ClasesAlicanTeam.EN
 
         protected override void FromRow(DataRow Row)
         {
-            ENSubject s = base.Read((int)Row["idSubject"]);
-            this.IdSubject = s.Id;
+            this.id = (int)Row["ID"];
             this.idSubject = (int)Row["idSubject"];
         }
 
@@ -108,9 +95,9 @@ namespace ClasesAlicanTeam.EN
         /// Devuelve todos las editoriales nuevas que existen en la base de datos.
         /// </summary>
         /// <returns>Lista de ENPublisher con todos las editoriales nuevas de la base de datos.</returns>
-        /*public List<ENSubject> ReadAll()
+        public List<ENSubject> ReadAll()
         {
-            List<ENOptionalSubject> ret = new List<ENOptionalSubject>();
+            List<ENSubject> ret = new List<ENSubject>();
             DataTable tabla = cad.SelectAll();
             foreach (DataRow rows in tabla.Rows)
             {
@@ -120,14 +107,15 @@ namespace ClasesAlicanTeam.EN
                 ret.Add(nuevo);
 
             }
-            return (List<ENSubject>) ret;
-        }*/
+            return ret;
+        }
 
         public override int Save()
         {
             idBase = base.Save();
             if (id == 0)
             {
+                
                 this.id = cad.Insert(ToDataRow);
             }
             return 0;
