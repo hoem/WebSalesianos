@@ -278,7 +278,14 @@
     <Content Include="Images\anuncio3.jpg" />
     <Content Include="Images\banner.jpg" />
     <Content Include="Images\banner2.jpg" />
-    <Content Include="Images\Filosofia-3.jpg" />
+    <Content Include="Images\Caratulas\Filosofia-3.jpg" />
+    <Content Include="Images\Caratulas\Informatica-1.jpg" />
+    <Content Include="Images\Caratulas\Informatica-3.jpg" />
+    <Content Include="Images\Caratulas\Informatica-4.jpg" />
+    <Content Include="Images\Caratulas\Ingles-2.jpg" />
+    <Content Include="Images\Caratulas\Lengua-1.jpg" />
+    <Content Include="Images\Caratulas\matematica-1.jpg" />
+    <Content Include="Images\Caratulas\Matematicas-2.jpg" />
     <Content Include="Images\imageNature7.jpg" />
     <Content Include="Images\portada kiwi.jpg" />
     <Content Include="jquery.jtable.js" />
