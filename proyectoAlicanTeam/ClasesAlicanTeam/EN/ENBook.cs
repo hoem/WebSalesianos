@@ -45,6 +45,10 @@ namespace ClasesAlicanTeam.EN
             {
                 if (this.subject == null)
                 {
+                    if (subjectToLoad <= 0)
+                    {
+                        return null;
+                    }
                     subject = (new ENSubject()).Read(subjectToLoad);
                     subjectToLoad = -1;
                 }
@@ -62,10 +66,21 @@ namespace ClasesAlicanTeam.EN
         {
             get
             {
-                return this.Subject.Id;
+                if (this.Subject != null)
+                {
+                    return this.Subject.Id;
+                }
+                else
+                {
+                    return 0;
+                }
             }
             set
             {
+                if (this.Subject == null)
+                {
+                    this.Subject = new ENSubject();
+                }
                 this.Subject = this.Subject.Read(value);
             }
         }
@@ -78,6 +93,10 @@ namespace ClasesAlicanTeam.EN
             {
                 if (this.business == null)
                 {
+                    if (businessToLoad <= 0)
+                    {
+                        return null;
+                    }
                     business = (new ENBusiness()).Read(businessToLoad);
                     businessToLoad = -1;
                 }
@@ -94,10 +113,21 @@ namespace ClasesAlicanTeam.EN
         {
             get
             {
-                return this.Bussiness.Id;
+                if (this.Bussiness != null)
+                {
+                    return this.Bussiness.Id;
+                }
+                else
+                {
+                    return 0;
+                }
             }
             set
             {
+                if (this.Bussiness == null)
+                {
+                    this.Bussiness = new ENBusiness();
+                }
                 this.Bussiness = this.Bussiness.Read(value);
             }
         }

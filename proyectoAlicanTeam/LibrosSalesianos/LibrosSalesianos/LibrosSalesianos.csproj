@@ -264,13 +264,21 @@
     <Content Include="Content\themes\redmond\jquery-ui-1.8.16.custom.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Content\themes\base\images\Thumbs.db" />
+    <None Include="Properties\PublishProfiles\penemaximo - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\penemaximo - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\proyectoAlicanTeam - FTP %282%29.pubxml" />
+    <None Include="Properties\PublishProfiles\proyectoAlicanTeam - FTP %283%29.pubxml" />
+    <None Include="Properties\PublishProfiles\proyectoAlicanTeam - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\proyectoAlicanTeam - Web Deploy %282%29.pubxml" />
+    <None Include="Properties\PublishProfiles\proyectoAlicanTeam - Web Deploy %283%29.pubxml" />
+    <None Include="Properties\PublishProfiles\proyectoAlicanTeam - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Images\anuncio1.jpg" />
     <Content Include="Images\anuncio2.jpg" />
     <Content Include="Images\anuncio3.jpg" />
     <Content Include="Images\banner.jpg" />
     <Content Include="Images\banner2.jpg" />
+    <Content Include="Images\Filosofia-3.jpg" />
     <Content Include="Images\imageNature7.jpg" />
     <Content Include="Images\portada kiwi.jpg" />
     <Content Include="Scripts\jquery-1.7.1.js" />
@@ -883,9 +891,6 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Scripts\widgets\jqwidgets\images\books\Thumbs.db" />
-    <Content Include="Scripts\widgets\jqwidgets\images\t-shirts\Thumbs.db" />
-    <Content Include="Scripts\widgets\jqwidgets\images\Thumbs.db" />
     <Content Include="Views\Home\Vista.cshtml" />
     <Content Include="Views\Shopping\ShoppingCartExample.cshtml" />
     <Content Include="Views\Shopping\Cart.cshtml" />
@@ -914,6 +919,9 @@
     <Content Include="Scripts\jtable\themes\metro\pink\jtable.less" />
     <Content Include="Scripts\jtable\themes\metro\purple\jtable.less" />
     <Content Include="Scripts\jtable\themes\metro\red\jtable.less" />
+    <Content Include="Views\Announce\AnnounceForm.cshtml" />
+    <Content Include="Views\Shared\_NewBookPartial.cshtml" />
+    <Content Include="Views\Shared\_UsedBookPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />

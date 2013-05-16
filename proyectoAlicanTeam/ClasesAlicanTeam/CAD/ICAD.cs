@@ -128,10 +128,11 @@ namespace ClasesAlicanTeam.CAD
             get
             {
                 DataRow ret;
-                if (!rowReturned)
+                if (!rowReturned || voidRow == null)
                 {
                     DataTable datatable = SelectAll(1, 1);
                     ret = datatable.NewRow();
+                    voidRow = ret;
                     rowReturned = true;
                 }
                 else

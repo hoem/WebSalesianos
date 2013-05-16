@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using ClasesAlicanTeam.EN;
 
 namespace LibrosSalesianos.Models
 {
@@ -15,17 +16,17 @@ namespace LibrosSalesianos.Models
 
         public string BookIsbn
         {
-            get { return Book.ISBN; }
+            get { return Book.IdBook; }
         }
 
-        public Book Book { get; private set; }
+        public ENNewBook Book { get; private set; }
 
         public string Description
         {
             get { return Book.Description; }
         }
 
-        public string Image { get { return Book.Image; } }
+        public string Image { get { return Book.Picture; } }
 
         public float UnitPrice
         {
@@ -39,7 +40,7 @@ namespace LibrosSalesianos.Models
 
         #endregion
 
-        public CartItem(Book book)
+        public CartItem(ENNewBook book)
         {
             this.Book = book;
             this.Quantity = 1;

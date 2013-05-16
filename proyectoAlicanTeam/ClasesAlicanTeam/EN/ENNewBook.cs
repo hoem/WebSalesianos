@@ -121,6 +121,25 @@ namespace ClasesAlicanTeam.EN
             this.price = price;
         }
 
+        public ENNewBook(int id) : base()
+        {
+            var book = base.Read(id);
+            var newbook = this.Read(id);
+
+            this.BusinessId = book.BusinessId;
+            this.Bussiness = book.Bussiness;
+            this.Description = book.Description;
+            this.Id = book.Id;
+            this.IdBook = book.IdBook;
+            this.IdNewBooks = newbook.IdNewBooks;
+            this.Name = book.Name;
+            this.Picture = book.Picture;
+            this.Price = newbook.Price;
+            this.Quantity = newbook.Quantity;
+            this.Subject = book.Subject;
+            this.SubjectId = book.SubjectId;
+        }
+
         /// <summary>
         /// Busca el libro nuevo en la base de datos y lo devuelve
         /// </summary>
@@ -129,6 +148,7 @@ namespace ClasesAlicanTeam.EN
         public  ENNewBook Read(int id)
         {
             ENNewBook ret = new ENNewBook();
+            cad = new CADNewBook();
             List<object> param = new List<object>();
             param.Add((object)id);
             ret.FromRow(cad.Select(param));

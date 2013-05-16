@@ -5,7 +5,7 @@
 }
 
 <div id="Book-@book.IdBook">
-    <table class="table">
+    <table>
         <tbody>
             <tr>
                 <td>
@@ -14,12 +14,6 @@
                 <td rowspan="2">
                     <div> @Html.Label("desc",book.Description) </div>
                     <div class="isbn">@Html.Label("isbn",book.IdBook)</div>
-                </td>
-                
-                <td>
-                    <div class="linkbutton">
-                        @Ajax.ActionLink("Al carrito!", "AddToCart", "Shopping", new { controller = "Shopping", isbn = book.IdBook, des = book.Description, img = book.Picture }, new AjaxOptions { HttpMethod = "POST", OnComplete = "function(){return false;}" },new{@class="addcart"})
-                    </div>
                 </td>
             </tr>
         </tbody>

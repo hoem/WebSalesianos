@@ -38,12 +38,13 @@
 
         <div id='jqxnavigationbar' style =" margin-left:19%">
             @foreach(ENAdvertisement ad in ads){
-            <div> @ad.Description
-            </div>
+                if(ad.Books.Count != 0)
+                {
+            <div> @ad.Description</div>
                 <div> 
-                    @*{ var book1 = ad.Books[0]; }*@
-                    @*Html.Partial("_BookPartial", book1)*@
-                </div>}
+                    @{var book1 = ad.Books[0];}
+                    @Html.Partial("_UsedBookPartial", book1)
+                </div>}}
         </div>
     @*<div class="calendario">*@
        @*<div id='jqxcalendar'></div>*@

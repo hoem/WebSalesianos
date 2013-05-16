@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using ClasesAlicanTeam.EN;
 
 namespace LibrosSalesianos.Models
 {
@@ -56,17 +57,17 @@ namespace LibrosSalesianos.Models
         /**
 	     * AddItem() - Adds an item to the shopping 
 	     */
-        public void AddItem(Book book)
+        public void AddItem(ENNewBook book)
         {
             // Create a new item to add to the cart
-            Book b = new Book(book);
+            ENNewBook b = new ENNewBook(book.Id);
             CartItem newItem = new CartItem(b);
 
             // If this item already exists in our list of items, increase the quantity
             // Otherwise, add the new item to the list
                 foreach (CartItem item in Items)
                 {
-                    if (item.BookIsbn == book.ISBN)
+                    if (item.BookIsbn == book.IdBook)
                     {
                         item.Quantity++;
                         return;
@@ -99,7 +100,7 @@ namespace LibrosSalesianos.Models
         /**
          * RemoveItem() - Removes an item from the shopping cart
          */
-        public void RemoveItem(Book book)
+        public void RemoveItem(ENNewBook book)
         {
             CartItem removedItem = new CartItem(book);
             foreach (var item in Items)

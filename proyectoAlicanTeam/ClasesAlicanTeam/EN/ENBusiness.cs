@@ -125,8 +125,6 @@ namespace ClasesAlicanTeam.EN
 
         public ENBusiness Read(int id)
         {
-            try
-            {
                 cad = new CADBusiness();
                 ENBusiness ret = new ENBusiness();
 
@@ -136,11 +134,6 @@ namespace ClasesAlicanTeam.EN
                 ret.FromRow(cad.Select(param));
 
                 return ret;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
         }
 
         public List<ENBusiness> ReadAll()

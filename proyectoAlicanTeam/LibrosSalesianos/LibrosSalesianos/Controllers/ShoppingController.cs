@@ -28,16 +28,17 @@ namespace LibrosSalesianos.Controllers
             return View(ShoppingCart.Instance);
         }
 
-        public ActionResult AddToCart(String isbn, string des, string img, float price)
+        public ActionResult AddToCart(int id)
         {
-            var book = new Book(isbn, des, price, img);
+            var book = new ENNewBook(id);
+            //var book = new Book(isbn, des, price, img);
             ShoppingCart.Instance.AddItem(book);
             return Content("true");
         }
 
-        public ActionResult RemoveFromCart(string isbn)
+        public ActionResult RemoveFromCart(int id)
         {
-            var book = new Book(isbn);
+            var book = new ENNewBook(id);
             ShoppingCart.Instance.RemoveItem(book);
             return RedirectToAction("Cart");
         }
