@@ -17,6 +17,8 @@ namespace LibrosSalesianos.Controllers
             return View();
         }
 
+        #region Books
+
         public ActionResult TableBooks()
         {
             if (Request.IsAjaxRequest())
@@ -115,5 +117,74 @@ namespace LibrosSalesianos.Controllers
                 return Json(new { Result = "ERROR", Message = ex.Message });
             }
         }
+
+        #endregion
+
+        #region DistributorsOrders
+
+        public ActionResult TableDistributorsOrders()
+        {
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView();
+            }
+            else
+            {
+                return View();
+            }
+        }
+
+        public JsonResult DistributorOrderList()
+        {
+            try
+            {
+                var reader = new ENDistributorsOrder();
+                var list = reader.ReadAll();
+                return Json(new { Result = "OK", Records = list, TotalRecordCount = list.Count });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { Result = "ERROR", Message = ex.Message });
+            }
+        }
+
+        public JsonResult DistributorOrderCreate(ENDistributorsOrder order)
+        {
+            try
+            {
+                order.Save();
+                return Json(new { Result = "OK", Record = order });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { Result = "ERROR", Message = ex.Message });
+            }
+        }
+
+        public JsonResult DistributorOrderUpdate(ENDistributorsOrder order)
+        {
+            throw new NotImplementedException();
+        }
+
+        public JsonResult DistributorOrderDelete(ENDistributorsOrder order)
+        {
+            throw new NotImplementedException();
+        }
+
+        public JsonResult DistributorOptions()
+        {
+            try
+            {
+                var distributorsList = (new ENDistributor()).ReadAll();
+                var distributors = distributorsList.Select(c => new { DisplayText = (c.Cif + " " + c.Name), Value = c.Id });
+                return Json(new { Result = "OK", Options = distributors });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { Result = "ERROR", Message = ex.Message });
+            }
+        }
+
+        #endregion
     }
 }
