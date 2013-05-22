@@ -47,7 +47,7 @@ namespace ClasesAlicanTeam.EN
             else
             {
                 cad.Update(ToDataRow);
-                return 0;
+                return this.id;
             }
         }
 

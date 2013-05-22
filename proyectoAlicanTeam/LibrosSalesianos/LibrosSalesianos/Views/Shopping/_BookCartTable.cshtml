@@ -41,7 +41,7 @@
                 </script>
                 <input type="number" id="Qty-@item.BookIsbn" name="Qty" min="1" value= "@item.Quantity" onchange="refreshQtyAndSubtotalFor('@item.BookIsbn','@item.UnitPrice');" />
             </td>
-            <td class="price">@item.UnitPrice.ToString("C")</td>
+            <td class="price">@item.UnitPrice.ToString("0.00") €</td>
             <td class="subtotal" id="Subtotal-@item.BookIsbn">@item.TotalPrice.ToString("C")</td>
             <td class="remove">
                 <div class="linkbutton">

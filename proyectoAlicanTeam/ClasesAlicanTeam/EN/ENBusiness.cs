@@ -19,6 +19,11 @@ namespace ClasesAlicanTeam.EN
         public ENBusiness()
         {
             cadBusiness = new CADBusiness();
+            cif = "";
+            name = "";
+            address = "";
+            telephone = 0;
+            email = "";
         }
 
         public ENBusiness(String cif, String name, String address, int telephone, String email)
@@ -66,13 +71,14 @@ namespace ClasesAlicanTeam.EN
         {
             get
             {
+                cad = new CADBusiness();
                 DataRow ret = cad.GetVoidRow;
-                ret["id"] = id;
-                ret["cif"] = cif;
-                ret["name"] = name;
-                ret["adress"] = address;
-                ret["telephone"] = telephone;
-                ret["email"] = email;
+                ret["ID"] = id;
+                ret["CIF"] = cif;
+                ret["Name"] = name;
+                ret["Address"] = address;
+                ret["Telephone"] = telephone;
+                ret["Email"] = email;
                 return ret;
             }
         }
@@ -87,40 +93,6 @@ namespace ClasesAlicanTeam.EN
             telephone = (int)Row["telephone"];
             email = (string)Row["email"];
             
-        }
-
-        public override int Save()
-        {
-            try
-            {
-                if (id == 0)
-                {
-                    return id = cad.Insert(ToDataRow);
-
-                }
-
-                else
-                {
-                    cad.Update(ToDataRow);
-                    return 0;
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        public override void Delete()
-        {
-            try
-            {
-                cad.Delete(ToDataRow);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
         }
 
         public ENBusiness Read(int id)

@@ -41,6 +41,9 @@ namespace ClasesAlicanTeam.CAD
 
         protected void disconnect()
         {
+            while (connection.State == ConnectionState.Executing)
+            {
+            }
             connection.Close();
         }
 

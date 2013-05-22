@@ -52,6 +52,7 @@ namespace ClasesAlicanTeam.EN
         {
             get
             {
+                cad = new CADUsedBook();
                 DataRow ret = cad.GetVoidRow;
                 ret["ID"] = this.id;
                 ret["Books"] = this.books;
@@ -132,6 +133,7 @@ namespace ClasesAlicanTeam.EN
             return ret;
         }
 
+
         public List<ENUsedBook> Filter(String where)
         {
             List<ENUsedBook> ret = new List<ENUsedBook>();
@@ -155,7 +157,20 @@ namespace ClasesAlicanTeam.EN
             }
         }
 
-        
+        public override int Save()
+        {
+            if (id == 0)
+            {
+                this.books = new CADBook().Insert(base.ToDataRow);
+                cad = new CADUsedBook();
+                return this.id = cad.Insert(ToDataRow);
+            }
+            else
+            {
+                cad.Update(ToDataRow);
+                return 0;
+            }        
+        }
 
         #endregion
     }

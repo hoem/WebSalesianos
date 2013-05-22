@@ -1,14 +1,14 @@
 ﻿@{
-    ViewBag.Title = "TableDistributorsOrders";
+    ViewBag.Title = "Admin - Pedidos";
 }
 
-<h3>Table DistributorsOrders</h3>
+<h3>Tablas Pedidos</h3>
 
 <div id="tableDistributorsOrders" style="margin-left:19%; margin-right:19%"></div>
 <script type="text/javascript">
     $(document).ready(function () {
         $('#tableDistributorsOrders').jtable({
-            title: 'General Books',
+            title: 'Pedidos a Distribuidores',
             paging: false, //Enable paging
             //pageSize: 10, //Set page size (default: 10)
             sorting: false, //Enable sorting
@@ -46,4 +46,3 @@
         $('#tableDistributorsOrders').jtable('load');
     });
 </script>
-</div>

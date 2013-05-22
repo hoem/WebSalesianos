@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Admin";
 }
 
 
@@ -11,8 +11,8 @@
 
 <nav id="navAdmin" style="margin-left:19%">
     <ul>
-        <li>@Ajax.ActionLink("Books","TableBooks","Administration",new AjaxOptions{UpdateTargetId = "tableContainer"})</li>
-        <li>@Ajax.ActionLink("Distributors Orders","TableDistributorsOrders","Administration",new AjaxOptions{UpdateTargetId = "tableContainer"})</li>
+        <li>@Ajax.ActionLink("Libros","TableBooks","Administration",new AjaxOptions{UpdateTargetId = "tableContainer"})</li>
+        <li>@Ajax.ActionLink("Pedidos","TableDistributorsOrders","Administration",new AjaxOptions{UpdateTargetId = "tableContainer"})</li>
     </ul>
 </nav>
 

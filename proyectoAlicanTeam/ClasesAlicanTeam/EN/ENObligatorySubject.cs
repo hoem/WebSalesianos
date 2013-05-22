@@ -113,6 +113,23 @@ namespace ClasesAlicanTeam.EN
             return ret;
         }
 
+
+        public override int Save()
+        {
+            if (id == 0)
+            {
+                this.idSubject = new CADSubject().Insert(base.ToDataRow);
+                cad = new CADObligatorySubject();
+                return this.id = cad.Insert(ToDataRow);
+            }
+            else
+            {
+                cad.Update(ToDataRow);
+                return 0;
+            }
+
+        }
+
         #endregion
     }
 }

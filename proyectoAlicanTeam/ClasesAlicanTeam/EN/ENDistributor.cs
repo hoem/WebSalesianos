@@ -46,6 +46,7 @@ namespace ClasesAlicanTeam.EN
 
         protected override void FromRow(DataRow Row)
         {
+            this.Id = (int)Row["ID"];
             ENBusiness b = base.Read((int)Row["idBusiness"]);
             this.idBusiness = b.Id;
             this.Cif = b.Cif;
@@ -110,6 +111,21 @@ namespace ClasesAlicanTeam.EN
                 ret.Add(nuevo);
             }
             return ret;
+        }
+
+        public override int Save()
+        {
+            if (id == 0)
+            {
+                this.idBusiness = new CADBusiness().Insert(base.ToDataRow);
+                cad = new CADDistributor();
+                return this.id = cad.Insert(ToDataRow);
+            }
+            else
+            {
+                cad.Update(ToDataRow);
+                return 0;
+            }
         }
 
         #endregion

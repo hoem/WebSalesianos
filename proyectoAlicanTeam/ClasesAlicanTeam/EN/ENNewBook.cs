@@ -195,6 +195,21 @@ namespace ClasesAlicanTeam.EN
             }
         }
 
+        public override int Save()
+        {
+            if (id == 0)
+            {
+                this.idNewBooks = new CADBook().Insert(base.ToDataRow);
+                cad = new CADNewBook();
+                return this.id = cad.Insert(ToDataRow);
+            }
+            else
+            {
+                cad.Update(ToDataRow);
+                return 0;
+            }
+        }
+
         #endregion
 
     }

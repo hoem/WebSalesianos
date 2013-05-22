@@ -95,7 +95,7 @@ namespace LibrosSalesianos.Controllers
             try
             {
                 var subjectList = (new ENSubject()).ReadAll();
-                var subjects = subjectList.Select(c => new { DisplayText = c.Name + " " + c.Course.Courses, Value = c.Id });
+                var subjects = subjectList.Select(c => new { DisplayText = c.Name + " " + c.Course.Name, Value = c.Id });
                 return Json(new { Result = "OK", Options = subjects });
             }
             catch (Exception ex)
@@ -153,7 +153,7 @@ namespace LibrosSalesianos.Controllers
             try
             {
                 order.Save();
-                return Json(new { Result = "OK", Record = order });
+                return Json(new { Result = "OK" });
             }
             catch (Exception ex)
             {
@@ -163,12 +163,28 @@ namespace LibrosSalesianos.Controllers
 
         public JsonResult DistributorOrderUpdate(ENDistributorsOrder order)
         {
-            throw new NotImplementedException();
+            try
+            {
+                order.Save();
+                return Json(new { Result = "OK", Record = order });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { Result = "ERROR", Message = ex.Message });
+            }
         }
 
-        public JsonResult DistributorOrderDelete(ENDistributorsOrder order)
+        public JsonResult DistributorOrderDelete(int Id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                (new ENDistributor()).Read(Id).Delete();
+                return Json(new { Result = "OK" });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { Result = "ERROR", Message = ex.Message });
+            }
         }
 
         public JsonResult DistributorOptions()

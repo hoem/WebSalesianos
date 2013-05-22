@@ -10,7 +10,7 @@ namespace ClasesAlicanTeam.EN
     public class ENCourse : AEN
     {
         
-        private String course;
+        private String name;
 
         /// <summary>
         /// Constructor por defecto que inicializa el objeto con sus campos vacíos.
@@ -27,7 +27,7 @@ namespace ClasesAlicanTeam.EN
         /// <param name="courses">Nombre de los cursos.</param>
         public ENCourse(String courses)
         {
-            this.course = courses;
+            this.name = courses;
             cad = new CADCourse();
             id = 0;
         }
@@ -36,11 +36,13 @@ namespace ClasesAlicanTeam.EN
         /// <summary>
         /// Devuelve y establece el nombre del curso.
         /// </summary>
-        public String Courses
+        public String Name
         {
-            get { return course; }
-            set { course = value; }
+            get { return name; }
+            set { name = value; }
         }
+
+        
 
 
         #endregion
@@ -52,7 +54,7 @@ namespace ClasesAlicanTeam.EN
             {
                 DataRow ret = cad.GetVoidRow;
                 ret["ID"] = this.id;
-                ret["Course"] = course;
+                ret["Course"] = name;
                 return ret;
             }
         }
@@ -60,7 +62,7 @@ namespace ClasesAlicanTeam.EN
         protected override void FromRow(DataRow Row)
         {
             id = (int)Row["ID"];
-            course = (string)Row["Course"];
+            name = (string)Row["Course"];
         }
 
 

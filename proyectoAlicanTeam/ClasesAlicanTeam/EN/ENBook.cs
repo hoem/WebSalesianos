@@ -62,6 +62,9 @@ namespace ClasesAlicanTeam.EN
             }
         }
 
+        /// <summary>
+        /// Obtiene y establece el identificador de la asignatura del libro.
+        /// </summary>
         public int SubjectId
         {
             get
@@ -84,6 +87,7 @@ namespace ClasesAlicanTeam.EN
                 this.Subject = this.Subject.Read(value);
             }
         }
+
         /// <summary>
         /// Devuelve y establece el Bussinesss del libro.
         /// </summary>
@@ -109,6 +113,9 @@ namespace ClasesAlicanTeam.EN
             }
         }
 
+        /// <summary>
+        /// Devuelve y establece el negocio del libro.
+        /// </summary>
         public int BusinessId
         {
             get
@@ -185,6 +192,7 @@ namespace ClasesAlicanTeam.EN
         {
             get 
             {
+                cad = new CADBook();
                 DataRow ret = cad.GetVoidRow;
                 ret["ID"] = this.id;
                 ret["idBooks"] = this.idBook;

@@ -12,6 +12,8 @@ namespace ClasesAlicanTeam.EN
         protected ENCourse course;
         protected CADSubject cad;
         protected String name;
+        protected int idCourse;
+
 
         public ENSubject()
         {
@@ -23,12 +25,19 @@ namespace ClasesAlicanTeam.EN
         public ENSubject(String name, ENCourse course)
         {
             cad = new CADSubject();
-            this.name = Name;
-            this.course = Course;
+            this.name = name;
+            this.course = course;
             id = 0;
         }
 
 
+
+        public int IdCourse
+        {
+            get{ return idCourse;            }
+            set{ idCourse = value;}
+            
+        }
 
         public String Name
         {
@@ -38,7 +47,17 @@ namespace ClasesAlicanTeam.EN
 
         public ENCourse Course
         {
-            get { return course; }
+            get {
+                /*if(course != null)
+                {
+                    return course;
+                }
+                else
+                {*/
+                    course = (new ENCourse().Read(idCourse));
+                    return course;
+                //}
+            }
             set { course = value; }
         }
 
@@ -46,10 +65,11 @@ namespace ClasesAlicanTeam.EN
         {
             get
             {
+                cad = new CADSubject();
                 DataRow ret = cad.GetVoidRow;
                 ret["ID"] = this.id;
                 ret["Name"] = name;
-                ret["idCourse"] = course.Id;
+                ret["idCourse"] = idCourse;
 
                 return ret;
             }
@@ -59,7 +79,7 @@ namespace ClasesAlicanTeam.EN
         {
             this.id = (int)Row["ID"];
             Name = (string)Row["Name"];
-            course.Id = (int)Row["idCourse"];
+            idCourse = (int)Row["idCourse"];
 
 
         }
@@ -123,6 +143,7 @@ namespace ClasesAlicanTeam.EN
 
         public ENSubject Read(int idSubject)
         {
+            cad = new CADSubject();
                 ENSubject ret = new ENSubject();
 
                 List<object> param = new List<object>();

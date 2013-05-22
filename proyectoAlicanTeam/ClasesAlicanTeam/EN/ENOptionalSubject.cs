@@ -46,8 +46,11 @@ namespace ClasesAlicanTeam.EN
 
         protected override void FromRow(DataRow Row)
         {
+            ENSubject t = base.Read((int)Row["idSubject"]);
+            this.IdCourse = t.IdCourse;
+            this.name = t.Name;
             this.id = (int)Row["ID"];
-            this.idSubject = (int)Row["idSubject"];
+            this.idSubject = t.Id;
         }
 
 
@@ -112,13 +115,17 @@ namespace ClasesAlicanTeam.EN
 
         public override int Save()
         {
-            idBase = base.Save();
             if (id == 0)
             {
-                
-                this.id = cad.Insert(ToDataRow);
+                this.idSubject = new CADSubject().Insert(base.ToDataRow);
+                cad = new CADOptionalSubject();
+                return this.id = cad.Insert(ToDataRow);
             }
-            return 0;
+            else
+            {
+                cad.Update(ToDataRow);
+                return 0;
+            } 
             
         }
         #endregion
